@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>AutoCusto BR — Simulador de Custos Veiculares</title>
+<title>AutoCusto — Simulador de Custos Veiculares</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -205,18 +205,9 @@ body{min-height:max(884px,100dvh)}
       <span class="w-2 h-2 rounded-full bg-tertiary inline-block animate-pulse"></span>
       PBEV 2026 (Inmetro)
     </span>
-    <!-- API Key toggle -->
-    <button onclick="toggleApiPanel()" class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-highest p-xs rounded-full transition-colors" title="Configurar API Key">settings</button>
   </div>
 </header>
 
-<!-- API KEY PANEL -->
-<div id="apiPanel" class="hidden fixed top-16 right-0 z-40 w-full md:w-96 bg-surface-container border-b border-l border-outline-variant p-md shadow-2xl">
-  <p class="text-label-sm text-outline-variant uppercase mb-xs">Gemini API Key</p>
-  <div class="flex gap-xs">
-    <input id="apiKey" type="password" placeholder="AIzaSy..." class="flex-1 bg-surface-container-lowest border border-outline rounded-lg px-sm py-xs text-on-surface font-data-mono text-sm focus:ring-0 focus:border-tertiary outline-none"/>
-    <button onclick="toggleApiPanel()" class="bg-tertiary text-on-tertiary px-sm rounded-lg text-label-sm font-bold">OK</button>
-  </div>
 
 </div>
 
@@ -442,10 +433,7 @@ body{min-height:max(884px,100dvh)}
     <span class="material-symbols-outlined">description</span>
     <span class="font-label-sm text-label-sm">PBEV</span>
   </a>
-  <button onclick="toggleApiPanel()" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface transition-all group">
-    <span class="material-symbols-outlined">key</span>
-    <span class="font-label-sm text-label-sm">API Key</span>
-  </button>
+
 </nav>
 
 <script>
@@ -523,9 +511,7 @@ function setLang(l, btn) {
   btn.classList.add('active');
 }
 
-function toggleApiPanel() {
-  document.getElementById('apiPanel').classList.toggle('hidden');
-}
+
 
 let vehicleCVisible = false;
 function toggleVehicleC() {
@@ -578,34 +564,8 @@ async function callGemini(msg) {
     return data;
   }
 
-  // MODO STANDALONE — API Key inserida pelo usuário
-  const key = document.getElementById('apiKey').value.trim();
-  if (!key) {
-    toggleApiPanel();
-    throw new Error(lang === 'pt'
-      ? 'Configure sua Gemini API Key clicando em ⚙ no topo.'
-      : 'Configure your Gemini API Key by clicking ⚙ at the top.');
-  }
-  const res = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${key}`,
-    {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({
-        system_instruction: {parts:[{text: SYSTEM_PROMPT}]},
-        contents: [{role:'user', parts:[{text: msg}]}],
-        generationConfig: {temperature: 0.1, responseMimeType:'application/json'}
-      })
-    }
-  );
-  if (!res.ok) {
-    const e = await res.json().catch(()=>({}));
-    throw new Error(e?.error?.message || `HTTP ${res.status}`);
-  }
-  const data = await res.json();
-  const raw = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-  if (!raw) throw new Error(lang === 'pt' ? 'Resposta vazia da IA.' : 'Empty AI response.');
-  return JSON.parse(raw.replace(/^```json\n?/,'').replace(/\n?```$/,''));
+  // Modo standalone desativado — usando backend
+  throw new Error('Backend não configurado. Contacte o administrador.');
 }
 
 // ── RUN ────────────────────────────────────────────────────────────────────
