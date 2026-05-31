@@ -625,7 +625,7 @@ function setLang(l, btn) {
   const pA = document.getElementById('veiculoA');
   const pB = document.getElementById('veiculoB');
   const pC = document.getElementById('veiculoC');
-  const pKm = document.getElementById('kmDia');
+  const pKm = document.getElementById('kmInput');
   if (pA) pA.placeholder = l==='pt' ? 'Ex: VW Polo Confortline 2026' : 'Ex: VW Polo Confortline 2026';
   if (pB) pB.placeholder = l==='pt' ? 'Ex: BYD Dolphin Mini 2026' : 'Ex: BYD Dolphin Mini 2026';
   if (pC) pC.placeholder = l==='pt' ? 'Ex: Toyota Corolla Hybrid 2025' : 'Ex: Toyota Corolla Hybrid 2025';
@@ -640,7 +640,7 @@ function setLang(l, btn) {
   }
 
   // Traduzir o cicloLabel
-  updateCiclo(document.getElementById('kmDia')?.value || 20);
+  updateCiclo(document.getElementById('kmInput')?.value || 20);
 
   // Re-aplicar textos de região com novo idioma
   setRegion(currentRegion, document.getElementById('region' + currentRegion));
@@ -724,7 +724,7 @@ async function runComparativo() {
   const out = document.getElementById('resultArea');
   btn.disabled = true;
   document.getElementById('btnIcon').className = 'material-symbols-outlined spin';
-  document.getElementById('btnLabel').textContent = lang==='pt' ? 'Consultando PBEV 2026...' : 'Fetching PBEV 2026...';
+  document.getElementById('btn-label').textContent = lang==='pt' ? 'Consultando PBEV 2026...' : 'Fetching PBEV 2026...';
 
   out.innerHTML = `<div class="glass-panel p-md rounded-xl flex items-center gap-sm text-on-surface-variant">
     <span class="material-symbols-outlined spin text-tertiary">autorenew</span>
@@ -767,7 +767,7 @@ async function runComparativo() {
   }
   btn.disabled = false;
   document.getElementById('btnIcon').className = 'material-symbols-outlined';
-  document.getElementById('btnLabel').textContent = lang==='pt' ? 'Comparar Agora' : 'Compare Now';
+  document.getElementById('btn-label').textContent = lang==='pt' ? 'Comparar Agora' : 'Compare Now';
 }
 
 // ── RENDER ─────────────────────────────────────────────────────────────────
