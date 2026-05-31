@@ -732,7 +732,7 @@ async function runComparativo() {
   </div>`;
 
   // Modo região
-  const isEU = document.getElementById('regionEU')?.classList.contains('active') || false;
+  const isEU = currentRegion === 'EU';
   const regionLabel = isEU ? 'União Europeia / Europe (EU)' : (lang==='pt' ? 'Brasil' : 'Brazil');
   const estadoLabel = estado ? (lang==='pt' ? ' no estado ' : ' in state ') + estado : '';
 
@@ -752,8 +752,8 @@ async function runComparativo() {
     : 'RESPOND ENTIRELY IN ENGLISH. Do not use Portuguese in any part of the response.';
 
   const msg = lang === 'pt'
-    ? `${langInstruction}\nREGIÃO: ${regionLabel}\n${fonte}\n${precos}\n\nCompare os veículos abaixo com ${km} km por dia${estadoLabel}:\nVeículo A: ${vA}\nVeículo B: ${vB}${vC?'\nVeículo C: '+vC:''}\n${isEU ? 'Use dados WLTP oficiais. Apresente consumo em L/100km. Moeda: Euro (€). Analise para o mercado europeu/português.' : 'Use obrigatoriamente a Tabela PBEV 2026 (Inmetro) como fonte primária.'}`
-    : `${langInstruction}\nREGION: ${regionLabel}\n${fonte}\n${precos}\n\nCompare the vehicles below with ${km} km per day${estadoLabel}:\nVehicle A: ${vA}\nVehicle B: ${vB}${vC?'\nVehicle C: '+vC:''}\n${isEU ? 'Use official WLTP data. Present consumption in L/100km. Currency: Euro (€). Analyse for the European/Portuguese market.' : 'Mandatorily use the PBEV 2026 table (Inmetro) as the primary consumption source.'}`;
+    ? `${langInstruction}\nREGIÃO: ${regionLabel}\n${fonte}\n${precos}\n\nCompare os veículos abaixo com ${km} km por dia${estadoLabel}:\nVeículo A: ${vA}\nVeículo B: ${vB}${vC?'\nVeículo C: '+vC:''}\n${isEU ? 'OBRIGATÓRIO: Use dados WLTP (padrão EU). PROIBIDO: não use etanol (não existe na Europa). Combustíveis: gasolina e diesel apenas. Moeda: Euro (€). Consumo em L/100km. Preços: gasolina €1,72/L, diesel €1,58/L, energia €0,28/kWh. Fonte: WLTP — não mencione PBEV.' : 'Use obrigatoriamente a Tabela PBEV 2026 (Inmetro) como fonte primária.'}`
+    : `${langInstruction}\nREGION: ${regionLabel}\n${fonte}\n${precos}\n\nCompare the vehicles below with ${km} km per day${estadoLabel}:\nVehicle A: ${vA}\nVehicle B: ${vB}${vC?'\nVehicle C: '+vC:''}\n${isEU ? 'MANDATORY: Use WLTP data (EU standard). FORBIDDEN: no ethanol scenarios (ethanol does not exist in Europe). Fuels: gasoline and diesel only. Currency: Euro (€). Consumption in L/100km. Prices: gasoline €1.72/L, diesel €1.58/L, electricity €0.28/kWh. Source label: WLTP (EU). Do NOT mention PBEV.' : 'Mandatorily use the PBEV 2026 table (Inmetro) as the primary consumption source.'}`;
 
   try {
     const data = await callGemini(msg);
