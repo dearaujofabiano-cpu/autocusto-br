@@ -686,7 +686,8 @@ updateCiclo(20);
 
 function brl(n) {
   if (n == null || isNaN(n)) return 'N/D';
-  return 'R$ ' + Number(n).toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2});
+  const sym = currentRegion === 'EU' ? '€ ' : 'R$ ';
+  return sym + Number(n).toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2});
 }
 function num(n, d=1) { return Number(n).toLocaleString('pt-BR', {minimumFractionDigits:d, maximumFractionDigits:d}); }
 function kmFmt(n) { return Number(n).toLocaleString('pt-BR', {minimumFractionDigits:3, maximumFractionDigits:3}); }
@@ -828,8 +829,8 @@ function render(data) {
             <span class="tipo-pill tipo-${v.tipo}">${v.tipo}</span>
             ${isWin?`<span class="flex items-center gap-xs text-tertiary" style="font-size:11px;font-weight:700;letter-spacing:.04em"><span class="material-symbols-outlined" style="font-size:14px">check_circle</span>${lang==='pt'?'MAIS ECONÔMICO':'MOST EFFICIENT'}</span>`:''}
           </div>
-          <p class="text-on-surface font-headline-md" style="font-size:15px;line-height:1.3;font-weight:600">${v.nome}${v.ano?' '+v.ano:''}</p>
-          <p class="text-on-surface-variant" style="font-size:11px;margin-top:2px">${num(v.consumo_oficial.cidade,1)} ${v.consumo_oficial.unidade} ${lang==='pt'?'cidade':'city'} · ${v.consumo_oficial.fonte}${v.autonomia_eletrica_km?' · '+v.autonomia_eletrica_km+' km elétrico':''}</p>
+          <p class="text-on-surface font-headline-md" style="font-size:15px;line-height:1.3;font-weight:600">${v.nome}${v.ano && !v.nome.includes(v.ano)?' '+v.ano:''}</p>
+          <p class="text-on-surface-variant" style="font-size:11px;margin-top:2px">${num(v.consumo_oficial.cidade,1)} ${v.consumo_oficial.unidade} ${lang==='pt'?'cidade':'city'} · ${currentRegion==='EU'?v.consumo_oficial.fonte.replace('PBEV 2026 (Inmetro)','WLTP (EU)').replace('não localizado no PBEV 2026','não localizado no WLTP').replace('PBEV','WLTP'):v.consumo_oficial.fonte}${v.autonomia_eletrica_km?' · '+v.autonomia_eletrica_km+' km elétrico':''}</p>
         </div>
       </div>
       <!-- best scenario -->
