@@ -738,22 +738,22 @@ async function runComparativo() {
 
   // Preços de referência por região
   const precos = isEU
-    ? 'REFERENCE PRICES (EU average May 2026): gasoline €1.72/L | diesel €1.58/L | electricity €0.28/kWh'
-    : 'REFERENCE PRICES (ANP May 2026): gasoline R$6.65/L | ethanol R$4.44/L | electricity R$0.75/kWh';
+    ? 'PRICES EU: gas €1.72/L, diesel €1.58/L, elec €0.28/kWh'
+    : 'PRICES BR: gas R$6.65/L, eth R$4.44/L, elec R$0.75/kWh';
 
   // Fonte de dados por região
   const fonte = isEU
-    ? 'CONSUMPTION DATA SOURCE: WLTP (Worldwide Harmonised Light Vehicle Test Procedure) — official EU standard. Use DGEG Portugal or ACEA European data. Units: L/100km or kWh/100km (NOT km/L).'
-    : 'CONSUMPTION DATA SOURCE: Tabela PBEV 2026 (Inmetro) — versão abril/2026. Units: km/L or km/kWh.';
+    ? 'SOURCE: WLTP EU. Units: L/100km.'
+    : 'SOURCE: PBEV 2026 Inmetro. Units: km/L.';
 
   // Instrução de idioma EXPLÍCITA
   const langInstruction = lang === 'pt'
-    ? 'RESPOND ENTIRELY IN PORTUGUESE (pt-BR). Do not use English in any part of the response.'
-    : 'RESPOND ENTIRELY IN ENGLISH. Do not use Portuguese in any part of the response.';
+    ? 'LANG:PT'
+    : 'LANG:EN';
 
   const msg = lang === 'pt'
-    ? `${langInstruction}\nREGIÃO: ${regionLabel}\n${fonte}\n${precos}\n\nCompare os veículos abaixo com ${km} km por dia${estadoLabel}:\nVeículo A: ${vA}\nVeículo B: ${vB}${vC?'\nVeículo C: '+vC:''}\n${isEU ? 'OBRIGATÓRIO: Use dados WLTP (padrão EU). PROIBIDO: não use etanol (não existe na Europa). Combustíveis: gasolina e diesel apenas. Moeda: Euro (€). Consumo em L/100km. Preços: gasolina €1,72/L, diesel €1,58/L, energia €0,28/kWh. Fonte: WLTP — não mencione PBEV.' : 'Use obrigatoriamente a Tabela PBEV 2026 (Inmetro) como fonte primária.'}`
-    : `${langInstruction}\nREGION: ${regionLabel}\n${fonte}\n${precos}\n\nCompare the vehicles below with ${km} km per day${estadoLabel}:\nVehicle A: ${vA}\nVehicle B: ${vB}${vC?'\nVehicle C: '+vC:''}\n${isEU ? 'MANDATORY: Use WLTP data (EU standard). FORBIDDEN: no ethanol scenarios (ethanol does not exist in Europe). Fuels: gasoline and diesel only. Currency: Euro (€). Consumption in L/100km. Prices: gasoline €1.72/L, diesel €1.58/L, electricity €0.28/kWh. Source label: WLTP (EU). Do NOT mention PBEV.' : 'Mandatorily use the PBEV 2026 table (Inmetro) as the primary consumption source.'}`;
+    ? `${langInstruction}\nREGIÃO: ${regionLabel}\n${fonte}\n${precos}\n\nCompare os veículos abaixo com ${km} km por dia${estadoLabel}:\nVeículo A: ${vA}\nVeículo B: ${vB}${vC?'\nVeículo C: '+vC:''}\n${isEU ? 'REGIÃO EU: WLTP, sem etanol, gasolina/diesel, Euro(€), L/100km.' : 'Use obrigatoriamente a Tabela PBEV 2026 (Inmetro) como fonte primária.'}`
+    : `${langInstruction}\nREGION: ${regionLabel}\n${fonte}\n${precos}\n\nCompare the vehicles below with ${km} km per day${estadoLabel}:\nVehicle A: ${vA}\nVehicle B: ${vB}${vC?'\nVehicle C: '+vC:''}\n${isEU ? 'REGION EU: WLTP, no ethanol, gasoline/diesel only, Euro(€), L/100km.' : 'Mandatorily use the PBEV 2026 table (Inmetro) as the primary consumption source.'}`;
 
   try {
     const data = await callGemini(msg);
