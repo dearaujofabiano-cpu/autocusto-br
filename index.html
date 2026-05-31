@@ -270,6 +270,10 @@ body{min-height:max(884px,100dvh)}
           <span class="material-symbols-outlined text-tertiary text-[20px]">directions_car</span>
           <h3 class="font-headline-md text-headline-md text-primary" id="form-section-vehicles">Seleção de Veículos</h3>
         </div>
+        <p class="text-label-sm text-outline-variant mb-sm" id="vehicle-hint" style="margin-top:-8px">
+          <span class="material-symbols-outlined" style="font-size:13px;vertical-align:-2px;margin-right:3px">info</span>
+          <span id="vehicle-hint-text">Preencha a <strong style="color:#c6c6ca">MARCA</strong>, <strong style="color:#c6c6ca">MODELO</strong> e <strong style="color:#c6c6ca">VERSÃO</strong> dos veículos a serem comparados</span>
+        </p>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-sm" id="vehicleGrid">
           <!-- Veículo A -->
           <div class="flex flex-col gap-xs">
@@ -542,6 +546,7 @@ const UI_TEXTS = {
     'lbl-veiculos': 'Veículos para comparar',
     'lbl-uso': 'Perfil de uso',
     'form-section-vehicles': 'Seleção de Veículos',
+    'vehicle-hint-text': 'Preencha a <strong style="color:#c6c6ca">MARCA</strong>, <strong style="color:#c6c6ca">MODELO</strong> e <strong style="color:#c6c6ca">VERSÃO</strong> dos veículos a serem comparados',
     'form-section-params': 'Parâmetros de Uso',
     'l-vA': 'Veículo A',
     'l-vB': 'Veículo B',
@@ -570,6 +575,7 @@ const UI_TEXTS = {
     'lbl-veiculos': 'Vehicles to compare',
     'lbl-uso': 'Usage profile',
     'form-section-vehicles': 'Vehicle Selection',
+    'vehicle-hint-text': 'Fill in the <strong style="color:#c6c6ca">MAKE</strong>, <strong style="color:#c6c6ca">MODEL</strong> and <strong style="color:#c6c6ca">VERSION</strong> of the vehicles to compare',
     'form-section-params': 'Usage Parameters',
     'l-vA': 'Vehicle A',
     'l-vB': 'Vehicle B',
@@ -618,7 +624,10 @@ function setLang(l, btn) {
   const t = UI_TEXTS[l];
   Object.keys(t).forEach(key => {
     const el = document.getElementById(key);
-    if (el) el.textContent = t[key];
+    if (!el) return;
+    // Elementos com HTML rico usam innerHTML
+    if (key === 'vehicle-hint-text') { el.innerHTML = t[key]; }
+    else { el.textContent = t[key]; }
   });
 
   // Atualizar placeholders
