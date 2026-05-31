@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>AutoCusto — Simulador de Custos Veiculares</title>
+<title>Auto Custo — Simulador de Custos Veiculares</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -135,7 +135,7 @@ body{min-height:max(884px,100dvh)}
     <div class="terms-header">
       <h2>
         <span class="material-symbols-outlined" style="font-size:20px;color:#4ae176">gavel</span>
-        Termos de Uso — AutoCusto BR
+        Termos de Uso — Auto Custo
       </h2>
       <p>Leia antes de continuar. Seu uso da ferramenta implica aceite.</p>
     </div>
@@ -143,7 +143,7 @@ body{min-height:max(884px,100dvh)}
 
       <div class="terms-section">
         <h3>1. Natureza da Ferramenta</h3>
-        <p>O AutoCusto BR é uma <strong style="color:#d8e3fb">ferramenta educacional e de planejamento financeiro</strong> para comparação de custos operacionais veiculares. Não se trata de consultoria financeira, técnica ou de consumo profissional.</p>
+        <p>O Auto Custo é uma <strong style="color:#d8e3fb">ferramenta educacional e de planejamento financeiro</strong> para comparação de custos operacionais veiculares. Não se trata de consultoria financeira, técnica ou de consumo profissional.</p>
       </div>
 
       <div class="terms-section">
@@ -160,12 +160,12 @@ body{min-height:max(884px,100dvh)}
 
       <div class="terms-section">
         <h3>3. Estimativas e Aproximações</h3>
-        <p>Os resultados apresentados são <strong style="color:#d8e3fb">estimativas para fins de planejamento</strong> e não representam garantia de valores reais. Preços de combustível e energia são médias nacionais ou regionais e estão sujeitos a variação constante. O AutoCusto BR não se responsabiliza por divergências entre os valores calculados e os custos efetivamente incorridos pelo usuário.</p>
+        <p>Os resultados apresentados são <strong style="color:#d8e3fb">estimativas para fins de planejamento</strong> e não representam garantia de valores reais. Preços de combustível e energia são médias nacionais ou regionais e estão sujeitos a variação constante. O Auto Custo não se responsabiliza por divergências entre os valores calculados e os custos efetivamente incorridos pelo usuário.</p>
       </div>
 
       <div class="terms-section">
         <h3>4. Limitação de Responsabilidade</h3>
-        <p>O uso desta ferramenta para embasar decisões de compra, financiamento ou qualquer outra decisão financeira é de <strong style="color:#d8e3fb">exclusiva responsabilidade do usuário</strong>. A Force Training, os desenvolvedores e colaboradores do AutoCusto BR não se responsabilizam por perdas, danos diretos ou indiretos decorrentes do uso das informações aqui fornecidas.</p>
+        <p>O uso desta ferramenta para embasar decisões de compra, financiamento ou qualquer outra decisão financeira é de <strong style="color:#d8e3fb">exclusiva responsabilidade do usuário</strong>. A Force Training, os desenvolvedores e colaboradores do Auto Custo não se responsabilizam por perdas, danos diretos ou indiretos decorrentes do uso das informações aqui fornecidas.</p>
       </div>
 
       <div class="terms-section">
@@ -197,13 +197,41 @@ body{min-height:max(884px,100dvh)}
 <!-- HEADER -->
 <header class="fixed top-0 left-0 w-full z-50 bg-surface border-b border-outline-variant flex justify-between items-center px-margin-mobile md:px-margin-desktop py-xs h-16">
   <div class="flex items-center gap-xs">
-    <span class="material-symbols-outlined text-tertiary">shield</span>
-    <h1 class="font-display-lg text-headline-md text-tertiary font-bold">AutoCusto BR</h1>
+    <div style="width:30px;height:30px;background:#081425;border:1px solid rgba(74,225,118,0.3);border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+      <svg viewBox="0 0 24 24" width="18" height="18" xmlns="http://www.w3.org/2000/svg">
+        <!-- Raio elétrico -->
+        <path d="M13 2L4.5 13H11L9.5 22L20 11H13.5L13 2Z" fill="#4ae176"/>
+        <!-- Gota de combustível pequena -->
+        <path d="M20 16C20 16 18.5 17.8 18.5 18.6C18.5 19.4 19.2 20 20 20C20.8 20 21.5 19.4 21.5 18.6C21.5 17.8 20 16 20 16Z" fill="#4ae176" opacity="0.6"/>
+      </svg>
+    </div>
+    <h1 class="font-display-lg text-headline-md text-tertiary font-bold">Auto Custo</h1>
   </div>
   <div class="flex items-center gap-sm">
-    <span class="hidden md:flex items-center gap-xs text-label-sm text-outline-variant">
+    <!-- REGIÃO SELECTOR -->
+    <div class="flex bg-surface-container-lowest border border-outline-variant rounded-full p-[3px] gap-[2px]" id="regionSelector">
+      <button id="regionBR" onclick="setRegion('BR',this)"
+        class="flex items-center gap-[5px] px-[10px] py-[4px] rounded-full text-[11px] font-semibold transition-all bg-tertiary text-on-tertiary"
+        title="Dados PBEV 2026 (Inmetro) — Brasil">
+        🇧🇷 <span class="hidden sm:inline">Brasil</span>
+      </button>
+      <button id="regionEU" onclick="setRegion('EU',this)"
+        class="flex items-center gap-[5px] px-[10px] py-[4px] rounded-full text-[11px] font-semibold transition-all text-on-surface-variant hover:text-on-surface"
+        title="Dados WLTP — União Europeia">
+        🇪🇺 <span class="hidden sm:inline">União Europeia</span>
+      </button>
+    </div>
+    <!-- SELETOR DE IDIOMA -->
+    <div class="flex bg-surface-container-lowest border border-outline-variant rounded-full p-[3px] gap-[2px]">
+      <button id="langPT" onclick="setLang('pt',this)"
+        class="segmented-btn px-[10px] py-[4px] rounded-full text-[11px] font-semibold transition-all active"
+        style="background:#4ae176;color:#002109">PT</button>
+      <button id="langEN" onclick="setLang('en',this)"
+        class="segmented-btn px-[10px] py-[4px] rounded-full text-[11px] font-semibold transition-all text-on-surface-variant hover:text-on-surface">EN</button>
+    </div>
+    <span class="hidden md:flex items-center gap-xs text-label-sm text-outline-variant" id="dataSourceBadge">
       <span class="w-2 h-2 rounded-full bg-tertiary inline-block animate-pulse"></span>
-      PBEV 2026 (Inmetro)
+      <span id="dataSourceLabel">PBEV 2026 (Inmetro)</span>
     </span>
   </div>
 </header>
@@ -216,8 +244,8 @@ body{min-height:max(884px,100dvh)}
 
   <!-- HERO -->
   <section class="mb-lg">
-    <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-xs">Simulador de Custos</h2>
-    <p class="text-on-surface-variant max-w-2xl font-body-md">Calcule e compare a viabilidade econômica entre diferentes veículos com base em dados técnicos reais do PBEV 2026 (Inmetro).</p>
+    <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-xs" id="hero-title">Descubra o custo real de qualquer veículo</h2>
+    <p class="text-on-surface-variant max-w-2xl font-body-md" id="hero-sub">Compare km/L, custo por km, mensal e anual — lado a lado, com dados oficiais</p>
   </section>
 
   
@@ -225,8 +253,8 @@ body{min-height:max(884px,100dvh)}
 <div id="disclaimerBanner">
   <span class="material-symbols-outlined disc-icon">info</span>
   <div class="disc-text">
-    <strong>Dados para planejamento.</strong> Os valores são calculados com base em fontes oficiais (PBEV 2026/Inmetro, ANP) em condições padronizadas e podem divergir do uso real. Variações de tráfego, estilo de condução, temperatura e conservação do veículo afetam o consumo efetivo. Não utilize como única base para decisões de compra.
-    <button class="terms-link" onclick="document.getElementById('termsModal').style.display='flex'" style="display:inline;text-decoration:underline;background:none;border:none;padding:0;color:#45474a;cursor:pointer;font-size:11px"> Ver termos completos</button>
+    <span id="disc-main-text"><strong id="disc-title">Dados para planejamento.</strong> Os valores são calculados com base em fontes oficiais (PBEV 2026/Inmetro, ANP) em condições padronizadas e podem divergir do uso real. Variações de tráfego, estilo de condução, temperatura e conservação do veículo afetam o consumo efetivo. Não utilize como única base para decisões de compra.</span>
+    <button class="terms-link" onclick="document.getElementById('termsModal').style.display='flex'" style="display:inline;text-decoration:underline;background:none;border:none;padding:0;color:#45474a;cursor:pointer;font-size:11px" id="disc-terms-link"> Ver termos completos</button>
   </div>
   <button class="disc-close" onclick="document.getElementById('disclaimerBanner').style.display='none'" title="Fechar">✕</button>
 </div>
@@ -240,20 +268,20 @@ body{min-height:max(884px,100dvh)}
       <div class="glass-panel p-md rounded-xl">
         <div class="flex items-center gap-xs mb-md">
           <span class="material-symbols-outlined text-tertiary text-[20px]">directions_car</span>
-          <h3 class="font-headline-md text-headline-md text-primary">Seleção de Veículos</h3>
+          <h3 class="font-headline-md text-headline-md text-primary" id="form-section-vehicles">Seleção de Veículos</h3>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-sm" id="vehicleGrid">
           <!-- Veículo A -->
           <div class="flex flex-col gap-xs">
-            <label class="text-label-sm uppercase tracking-wider text-on-surface-variant">Veículo A</label>
+            <label class="text-label-sm uppercase tracking-wider text-on-surface-variant" id="l-vA-upper">Veículo A</label>
             <div class="relative input-focus-glow transition-all duration-200 rounded-lg border border-outline bg-surface-container-lowest flex items-center px-sm py-xs">
               <span class="material-symbols-outlined text-outline mr-sm text-[18px]">search</span>
-              <input id="veiculoA" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/50 font-body-md outline-none" placeholder="Ex: Chevrolet Onix Premier 2025" type="text"/>
+              <input id="veiculoA" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/50 font-body-md outline-none" placeholder="Ex: VW Polo Confortline 2026" type="text"/>
             </div>
           </div>
           <!-- Veículo B -->
           <div class="flex flex-col gap-xs">
-            <label class="text-label-sm uppercase tracking-wider text-on-surface-variant">Veículo B</label>
+            <label class="text-label-sm uppercase tracking-wider text-on-surface-variant" id="l-vB-upper">Veículo B</label>
             <div class="relative input-focus-glow transition-all duration-200 rounded-lg border border-outline bg-surface-container-lowest flex items-center px-sm py-xs">
               <span class="material-symbols-outlined text-outline mr-sm text-[18px]">search</span>
               <input id="veiculoB" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/50 font-body-md outline-none" placeholder="Ex: BYD Dolphin Mini 2026" type="text"/>
@@ -263,7 +291,7 @@ body{min-height:max(884px,100dvh)}
         <!-- Veículo C toggle -->
         <div id="veiculoCRow" class="hidden mt-sm">
           <div class="flex flex-col gap-xs">
-            <label class="text-label-sm uppercase tracking-wider text-on-surface-variant">Veículo C (opcional)</label>
+            <label class="text-label-sm uppercase tracking-wider text-on-surface-variant" id="l-vC-upper">Veículo C (opcional)</label>
             <div class="relative input-focus-glow transition-all duration-200 rounded-lg border border-outline bg-surface-container-lowest flex items-center px-sm py-xs">
               <span class="material-symbols-outlined text-outline mr-sm text-[18px]">search</span>
               <input id="veiculoC" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/50 font-body-md outline-none" placeholder="Ex: Toyota Corolla Hybrid 2025" type="text"/>
@@ -280,12 +308,12 @@ body{min-height:max(884px,100dvh)}
       <div class="glass-panel p-md rounded-xl">
         <div class="flex items-center gap-xs mb-md">
           <span class="material-symbols-outlined text-tertiary text-[20px]">tune</span>
-          <h3 class="font-headline-md text-headline-md text-primary">Parâmetros de Uso</h3>
+          <h3 class="font-headline-md text-headline-md text-primary" id="form-section-params">Parâmetros de Uso</h3>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
           <!-- KM/dia -->
           <div class="flex flex-col gap-xs">
-            <label class="text-label-sm uppercase tracking-wider text-on-surface-variant">Km rodados por dia</label>
+            <label class="text-label-sm uppercase tracking-wider text-on-surface-variant" id="l-km-label">Km rodados por dia</label>
             <div class="flex items-center gap-sm">
               <div class="flex-grow input-focus-glow transition-all duration-200 rounded-lg border border-outline bg-surface-container-lowest flex items-center px-sm py-xs">
                 <input id="kmInput" class="bg-transparent border-none focus:ring-0 w-full text-on-surface font-data-mono text-xl outline-none" type="number" value="20" min="1" max="500"/>
@@ -293,7 +321,7 @@ body{min-height:max(884px,100dvh)}
               </div>
             </div>
             <input id="kmRange" class="w-full h-1 bg-surface-container-highest rounded-lg appearance-none cursor-pointer accent-tertiary mt-xs" max="500" min="1" type="range" value="20"/>
-            <p id="cicloLabel" class="text-label-sm text-outline-variant">Ciclo: <span class="text-tertiary">Urbano</span></p>
+            <p id="cicloLabel" class="text-label-sm text-outline-variant" id="cicloLabelText">Ciclo: <span class="text-tertiary" id="cicloValue">Urbano</span></p>
           </div>
           <!-- Perfil / Estado -->
           <div class="flex flex-col gap-xs">
@@ -313,11 +341,7 @@ body{min-height:max(884px,100dvh)}
               <option value="PE">Pernambuco</option>
               <option value="AM">Amazonas</option>
             </select>
-            <label class="text-label-sm uppercase tracking-wider text-on-surface-variant mt-sm">Idioma</label>
-            <div class="flex bg-surface-container-lowest p-1 rounded-lg border border-outline gap-1">
-              <button id="langPT" onclick="setLang('pt',this)" class="segmented-btn flex-1 py-xs rounded text-label-sm active transition-all">PT-BR</button>
-              <button id="langEN" onclick="setLang('en',this)" class="segmented-btn flex-1 py-xs rounded text-label-sm text-on-surface-variant hover:bg-surface-container-high transition-all">EN</button>
-            </div>
+
           </div>
         </div>
 
@@ -325,7 +349,7 @@ body{min-height:max(884px,100dvh)}
         <div class="pt-sm">
           <button id="btnComparar" onclick="runComparativo()" class="w-full bg-tertiary text-on-tertiary font-headline-md py-md rounded-xl flex items-center justify-center gap-sm hover:bg-tertiary-fixed transition-all hover:scale-[1.01] active:scale-[0.99] shadow-[0_8px_30px_rgb(74,225,118,0.1)]">
             <span id="btnIcon" class="material-symbols-outlined">compare_arrows</span>
-            <span id="btnLabel">Comparar Agora</span>
+            <span id="btn-label">Comparar Agora</span>
           </button>
           <p class="text-center text-label-sm text-outline-variant mt-md">Dados baseados no PBEV 2026 (Inmetro, abril/2026) · Preços ANP maio/2026</p>
         </div>
@@ -341,11 +365,11 @@ body{min-height:max(884px,100dvh)}
 
       <!-- DESTAQUE TÉCNICO -->
       <div class="bg-surface-container p-md border border-outline-variant rounded-xl">
-        <h4 class="text-label-sm text-tertiary uppercase mb-sm">Destaque Técnico</h4>
+        <h4 class="text-label-sm text-tertiary uppercase mb-sm" id="sidebar-highlight">Destaque Técnico</h4>
         <div class="aspect-video w-full rounded-lg overflow-hidden mb-md bg-surface-container-high flex items-center justify-center">
           <span class="material-symbols-outlined text-tertiary" style="font-size:48px;opacity:.3">electric_car</span>
         </div>
-        <p class="font-body-md text-on-surface-variant">
+        <p class="font-body-md text-on-surface-variant" id="techHighlightText">
           A <strong class="text-primary">Tabela PBEV 2026 (Inmetro)</strong> — atualizada em abril/2026 — reúne dados de consumo, autonomia e emissões de <strong class="text-primary">794 modelos</strong> vendidos no Brasil, incluindo elétricos, híbridos e flex. É a referência usada pelo nosso simulador.
         </p>
       </div>
@@ -353,25 +377,25 @@ body{min-height:max(884px,100dvh)}
       <!-- REFERÊNCIAS DE PREÇO -->
       <div class="bg-surface-container-low p-md border border-outline-variant/30 rounded-xl">
         <div class="flex items-center justify-between mb-sm">
-          <span class="text-label-sm text-outline-variant uppercase">Preços de Referência</span>
-          <span class="text-tertiary font-data-mono text-label-sm">ANP mai/26</span>
+          <span class="text-label-sm text-outline-variant uppercase" id="sidebar-prices">Preços de Referência</span>
+          <span class="text-tertiary font-data-mono text-label-sm" id="priceSourceLabel">ANP mai/26</span>
         </div>
-        <ul class="space-y-xs">
+        <ul class="space-y-xs" id="pricesList">
           <li class="flex justify-between items-center py-xs border-b border-outline-variant/10">
-            <div class="flex items-center gap-xs"><span class="material-symbols-outlined text-[16px] text-outline-variant">local_gas_station</span><span class="text-body-md text-primary">Gasolina</span></div>
-            <span class="font-data-mono text-tertiary text-label-sm">R$ 6,65/L</span>
+            <div class="flex items-center gap-xs"><span class="material-symbols-outlined text-[16px] text-outline-variant">local_gas_station</span><span class="text-body-md text-primary" id="price1Label">Gasolina</span></div>
+            <span class="font-data-mono text-tertiary text-label-sm" id="price1Val">R$ 6,65/L</span>
+          </li>
+          <li class="flex justify-between items-center py-xs border-b border-outline-variant/10" id="price2Row">
+            <div class="flex items-center gap-xs"><span class="material-symbols-outlined text-[16px] text-outline-variant">local_gas_station</span><span class="text-body-md text-primary" id="price2Label">Etanol</span></div>
+            <span class="font-data-mono text-tertiary text-label-sm" id="price2Val">R$ 4,44/L</span>
           </li>
           <li class="flex justify-between items-center py-xs border-b border-outline-variant/10">
-            <div class="flex items-center gap-xs"><span class="material-symbols-outlined text-[16px] text-outline-variant">local_gas_station</span><span class="text-body-md text-primary">Etanol</span></div>
-            <span class="font-data-mono text-tertiary text-label-sm">R$ 4,44/L</span>
+            <div class="flex items-center gap-xs"><span class="material-symbols-outlined text-[16px] text-outline-variant">bolt</span><span class="text-body-md text-primary" id="price3Label">Energia</span></div>
+            <span class="font-data-mono text-tertiary text-label-sm" id="price3Val">R$ 0,75/kWh</span>
           </li>
-          <li class="flex justify-between items-center py-xs border-b border-outline-variant/10">
-            <div class="flex items-center gap-xs"><span class="material-symbols-outlined text-[16px] text-outline-variant">bolt</span><span class="text-body-md text-primary">Energia</span></div>
-            <span class="font-data-mono text-tertiary text-label-sm">R$ 0,75/kWh</span>
-          </li>
-          <li class="flex justify-between items-center py-xs">
-            <div class="flex items-center gap-xs"><span class="material-symbols-outlined text-[16px] text-tertiary">check_circle</span><span class="text-body-md text-primary">Etanol compensa?</span></div>
-            <span class="font-data-mono text-tertiary text-label-sm">✓ Sim</span>
+          <li class="flex justify-between items-center py-xs" id="price4Row">
+            <div class="flex items-center gap-xs"><span class="material-symbols-outlined text-[16px] text-tertiary">check_circle</span><span class="text-body-md text-primary" id="price4Label">Etanol compensa?</span></div>
+            <span class="font-data-mono text-tertiary text-label-sm" id="price4Val">✓ Sim</span>
           </li>
         </ul>
       </div>
@@ -379,7 +403,7 @@ body{min-height:max(884px,100dvh)}
       <!-- EXEMPLOS POPULARES -->
       <div class="bg-surface-container-low p-md border border-outline-variant/30 rounded-xl">
         <div class="flex items-center justify-between mb-sm">
-          <span class="text-label-sm text-outline-variant uppercase">Compare Agora</span>
+          <span class="text-label-sm text-outline-variant uppercase" id="sidebar-examples">Compare Agora</span>
           <span class="text-tertiary font-data-mono text-label-sm animate-pulse">●</span>
         </div>
         <ul class="space-y-xs">
@@ -407,12 +431,12 @@ body{min-height:max(884px,100dvh)}
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-disclaimer">
-      <strong style="color:#8f9094">Aviso Legal:</strong> Os resultados apresentados são estimativas baseadas em dados públicos do PBEV 2026 (Inmetro, abril/2026) e preços de referência da ANP (maio/2026). Valores reais de consumo variam conforme estilo de condução, condições de tráfego, estado do veículo e fatores ambientais. Esta ferramenta tem caráter exclusivamente educacional e de planejamento. A Force Training não se responsabiliza por decisões tomadas com base nestas informações.
+      <strong style="color:#8f9094" id="footer-disclaimer-label">Aviso Legal:</strong> Os resultados apresentados são estimativas baseadas em dados públicos do PBEV 2026 (Inmetro, abril/2026) e preços de referência da ANP (maio/2026). Valores reais de consumo variam conforme estilo de condução, condições de tráfego, estado do veículo e fatores ambientais. Esta ferramenta tem caráter exclusivamente educacional e de planejamento. A Force Training não se responsabiliza por decisões tomadas com base nestas informações.
       <br>
       <button onclick="document.getElementById('termsModal').style.display='flex'" class="terms-link" style="margin-top:4px">Termos de Uso completos</button>
     </div>
     <div class="footer-brand">
-      <span class="powered-label">Powered by</span>
+      <span class="powered-label" id="powered-by">Powered by</span>
       <span class="powered-name">Force <span>Training</span></span>
       <span style="font-size:10px;color:#45474a;margin-top:2px">© 2026 · Todos os direitos reservados</span>
     </div>
@@ -423,11 +447,11 @@ body{min-height:max(884px,100dvh)}
 <nav class="fixed bottom-0 left-0 w-full z-50 bg-surface-container-low border-t border-outline-variant flex justify-around items-center py-xs px-base">
   <a href="#" class="flex flex-col items-center justify-center text-tertiary font-bold group">
     <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">directions_car</span>
-    <span class="font-label-sm text-label-sm">Simular</span>
+    <span class="font-label-sm text-label-sm" id="nav-simular">Simular</span>
   </a>
   <a href="#resultArea" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface transition-all group">
     <span class="material-symbols-outlined">compare_arrows</span>
-    <span class="font-label-sm text-label-sm">Resultado</span>
+    <span class="font-label-sm text-label-sm" id="nav-resultado">Resultado</span>
   </a>
   <a href="https://www.gov.br/inmetro/pt-br/assuntos/avaliacao-da-conformidade/programa-brasileiro-de-etiquetagem/tabelas-de-eficiencia-energetica/veiculos-automotivos-pbe-veicular" target="_blank" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface transition-all group">
     <span class="material-symbols-outlined">description</span>
@@ -453,6 +477,11 @@ LANGUAGE RULES:
 - Currency: BRL (R$)
 
 CLASSIFY each vehicle: ICE (combustão/flex/gasolina), HEV (híbrido sem plug), PHEV (híbrido plug-in), BEV (100% elétrico)
+
+REGION RULES — read the REGION field in the user message:
+- If REGIÃO/REGION = Brasil/Brazil: use PBEV 2026 (Inmetro), units km/L or km/kWh, currency R$, include ethanol scenario
+- If REGIÃO/REGION = União Europeia/European Union: use WLTP cycle (EU official), units L/100km or kWh/100km, currency €, NO ethanol (use gasoline + diesel + electric), adapt analysis to European market (Portugal, Spain, France, etc.)
+- ALWAYS follow the RESPOND IN [LANGUAGE] instruction at the top of each message
 
 CONSUMPTION DATA — priority order (MANDATORY):
 1. Tabela PBEV 2026 (Inmetro) — versão abril/2026, gov.br/inmetro — FONTE PRIORITÁRIA OBRIGATÓRIA
@@ -505,10 +534,119 @@ UNIVERSAL RULES:
 let lang = 'pt';
 
 // ── HELPERS ────────────────────────────────────────────────────────────────
+// Dicionário completo de traduções da UI
+const UI_TEXTS = {
+  pt: {
+    'hero-title': 'Descubra o custo real de qualquer veículo',
+    'hero-sub': 'Compare km/L, custo por km, mensal e anual — lado a lado, com dados oficiais',
+    'lbl-veiculos': 'Veículos para comparar',
+    'lbl-uso': 'Perfil de uso',
+    'form-section-vehicles': 'Seleção de Veículos',
+    'form-section-params': 'Parâmetros de Uso',
+    'l-vA': 'Veículo A',
+    'l-vB': 'Veículo B',
+    'l-vC': 'Veículo C (opcional)',
+    'l-vA-upper': 'Veículo A',
+    'l-vB-upper': 'Veículo B',
+    'l-vC-upper': 'Veículo C (opcional)',
+    'l-km': 'Km por dia',
+    'l-km-label': 'Km rodados por dia',
+    'l-estado': 'Estado',
+    'btn-label': 'Comparar Agora',
+    'addVehicleBtn': '+ ADICIONAR TERCEIRO VEÍCULO',
+    'sidebar-highlight': 'Destaque Técnico',
+    'sidebar-prices': 'Preços de Referência',
+    'sidebar-examples': 'Compare Agora',
+    'nav-simular': 'Simular',
+    'nav-resultado': 'Resultado',
+    'disc-title': 'Dados para planejamento.',
+    'disc-terms-link': 'Ver termos completos',
+    'footer-terms-link': 'Termos de Uso completos',
+    'powered-by': 'Powered by',
+  },
+  en: {
+    'hero-title': 'Discover the real cost of any vehicle',
+    'hero-sub': 'Compare cost per km, monthly and annual — side by side, with official data',
+    'lbl-veiculos': 'Vehicles to compare',
+    'lbl-uso': 'Usage profile',
+    'form-section-vehicles': 'Vehicle Selection',
+    'form-section-params': 'Usage Parameters',
+    'l-vA': 'Vehicle A',
+    'l-vB': 'Vehicle B',
+    'l-vC': 'Vehicle C (optional)',
+    'l-vA-upper': 'Vehicle A',
+    'l-vB-upper': 'Vehicle B',
+    'l-vC-upper': 'Vehicle C (optional)',
+    'l-km': 'Km per day',
+    'l-km-label': 'Km driven per day',
+    'l-estado': 'State / Country',
+    'btn-label': 'Compare Now',
+    'addVehicleBtn': '+ ADD THIRD VEHICLE',
+    'sidebar-highlight': 'Technical Highlight',
+    'sidebar-prices': 'Reference Prices',
+    'sidebar-examples': 'Compare Now',
+    'nav-simular': 'Simulate',
+    'nav-resultado': 'Result',
+    'disc-title': 'Planning data.',
+    'disc-terms-link': 'View full terms',
+    'footer-terms-link': 'Full Terms of Use',
+    'powered-by': 'Powered by',
+  }
+};
+
 function setLang(l, btn) {
   lang = l;
-  document.querySelectorAll('.segmented-btn[id^="lang"]').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
+  document.documentElement.lang = l === 'pt' ? 'pt-BR' : 'en';
+
+  // Atualizar botões de idioma
+  ['langPT','langEN'].forEach(id => {
+    const b = document.getElementById(id);
+    if (!b) return;
+    if (id === 'lang' + l.toUpperCase()) {
+      b.style.background = '#4ae176';
+      b.style.color = '#002109';
+    } else {
+      b.style.background = '';
+      b.style.color = '';
+      b.classList.remove('active');
+    }
+  });
+  btn.style.background = '#4ae176';
+  btn.style.color = '#002109';
+
+  // Atualizar todos os textos da UI
+  const t = UI_TEXTS[l];
+  Object.keys(t).forEach(key => {
+    const el = document.getElementById(key);
+    if (el) el.textContent = t[key];
+  });
+
+  // Atualizar placeholders
+  const pA = document.getElementById('veiculoA');
+  const pB = document.getElementById('veiculoB');
+  const pC = document.getElementById('veiculoC');
+  const pKm = document.getElementById('kmDia');
+  if (pA) pA.placeholder = l==='pt' ? 'Ex: VW Polo Confortline 2026' : 'Ex: VW Polo Confortline 2026';
+  if (pB) pB.placeholder = l==='pt' ? 'Ex: BYD Dolphin Mini 2026' : 'Ex: BYD Dolphin Mini 2026';
+  if (pC) pC.placeholder = l==='pt' ? 'Ex: Toyota Corolla Hybrid 2025' : 'Ex: Toyota Corolla Hybrid 2025';
+  if (pKm) pKm.placeholder = l==='pt' ? 'Ex: 35' : 'Ex: 35';
+
+  // Traduzir o disclaimer banner completo
+  const discMain = document.getElementById('disc-main-text');
+  if (discMain) {
+    discMain.innerHTML = l === 'pt'
+      ? '<strong id="disc-title">Dados para planejamento.</strong> Os valores são calculados com base em fontes oficiais (PBEV 2026/Inmetro, ANP) em condições padronizadas e podem divergir do uso real. Variações de tráfego, estilo de condução, temperatura e conservação do veículo afetam o consumo efetivo. Não utilize como única base para decisões de compra.'
+      : '<strong id="disc-title">Planning data.</strong> Values are calculated based on official sources (PBEV 2026/Inmetro, ANP, WLTP) under standardised conditions and may differ from real usage. Traffic, driving style, temperature and vehicle condition affect actual consumption. Do not use as the sole basis for purchasing decisions.';
+  }
+
+  // Traduzir o cicloLabel
+  updateCiclo(document.getElementById('kmDia')?.value || 20);
+
+  // Re-aplicar textos de região com novo idioma
+  setRegion(currentRegion, document.getElementById('region' + currentRegion));
+
+  // Limpar resultado (idioma mudou, resultado anterior invalido)
+  document.getElementById('resultArea').innerHTML = '';
 }
 
 
@@ -534,10 +672,13 @@ const kmRange = document.getElementById('kmRange');
 const cicloLabel = document.getElementById('cicloLabel');
 function updateCiclo(v) {
   const n = parseInt(v);
-  let ciclo = 'Urbano';
-  if (n > 100) ciclo = 'Rodoviário';
-  else if (n > 30) ciclo = 'Misto';
-  cicloLabel.innerHTML = `Ciclo: <span class="text-tertiary">${ciclo}</span>`;
+  let cicloPT, cicloEN;
+  if (n > 100) { cicloPT = 'Rodoviário'; cicloEN = 'Highway'; }
+  else if (n > 30) { cicloPT = 'Misto'; cicloEN = 'Mixed'; }
+  else { cicloPT = 'Urbano'; cicloEN = 'Urban'; }
+  const cicloText = lang === 'en' ? cicloEN : cicloPT;
+  const labelText = lang === 'en' ? 'Cycle' : 'Ciclo';
+  if (cicloLabel) cicloLabel.innerHTML = `${labelText}: <span class="text-tertiary">${cicloText}</span>`;
 }
 kmRange.addEventListener('input', e => { kmInput.value = e.target.value; updateCiclo(e.target.value); });
 kmInput.addEventListener('input', e => { kmRange.value = e.target.value; updateCiclo(e.target.value); });
@@ -590,9 +731,29 @@ async function runComparativo() {
     <span>${lang==='pt'?'Consultando Tabela PBEV 2026 e calculando custos...':'Fetching PBEV 2026 table and calculating costs...'}</span>
   </div>`;
 
+  // Modo região
+  const isEU = document.getElementById('regionEU')?.classList.contains('active') || false;
+  const regionLabel = isEU ? 'União Europeia / Europe (EU)' : (lang==='pt' ? 'Brasil' : 'Brazil');
+  const estadoLabel = estado ? (lang==='pt' ? ' no estado ' : ' in state ') + estado : '';
+
+  // Preços de referência por região
+  const precos = isEU
+    ? 'REFERENCE PRICES (EU average May 2026): gasoline €1.72/L | diesel €1.58/L | electricity €0.28/kWh'
+    : 'REFERENCE PRICES (ANP May 2026): gasoline R$6.65/L | ethanol R$4.44/L | electricity R$0.75/kWh';
+
+  // Fonte de dados por região
+  const fonte = isEU
+    ? 'CONSUMPTION DATA SOURCE: WLTP (Worldwide Harmonised Light Vehicle Test Procedure) — official EU standard. Use DGEG Portugal or ACEA European data. Units: L/100km or kWh/100km (NOT km/L).'
+    : 'CONSUMPTION DATA SOURCE: Tabela PBEV 2026 (Inmetro) — versão abril/2026. Units: km/L or km/kWh.';
+
+  // Instrução de idioma EXPLÍCITA
+  const langInstruction = lang === 'pt'
+    ? 'RESPOND ENTIRELY IN PORTUGUESE (pt-BR). Do not use English in any part of the response.'
+    : 'RESPOND ENTIRELY IN ENGLISH. Do not use Portuguese in any part of the response.';
+
   const msg = lang === 'pt'
-    ? `Compare os veículos abaixo com ${km} km por dia${estado?' no estado '+estado:''}:\nVeículo A: ${vA}\nVeículo B: ${vB}${vC?'\nVeículo C: '+vC:''}\nUse obrigatoriamente a Tabela PBEV 2026 (Inmetro) como fonte primária de consumo.`
-    : `Compare the vehicles below with ${km} km per day${estado?' in state '+estado:''}:\nVehicle A: ${vA}\nVehicle B: ${vB}${vC?'\nVehicle C: '+vC:''}\nMandatorily use the PBEV 2026 table (Inmetro) as the primary consumption source.`;
+    ? `${langInstruction}\nREGIÃO: ${regionLabel}\n${fonte}\n${precos}\n\nCompare os veículos abaixo com ${km} km por dia${estadoLabel}:\nVeículo A: ${vA}\nVeículo B: ${vB}${vC?'\nVeículo C: '+vC:''}\n${isEU ? 'Use dados WLTP oficiais. Apresente consumo em L/100km. Moeda: Euro (€). Analise para o mercado europeu/português.' : 'Use obrigatoriamente a Tabela PBEV 2026 (Inmetro) como fonte primária.'}`
+    : `${langInstruction}\nREGION: ${regionLabel}\n${fonte}\n${precos}\n\nCompare the vehicles below with ${km} km per day${estadoLabel}:\nVehicle A: ${vA}\nVehicle B: ${vB}${vC?'\nVehicle C: '+vC:''}\n${isEU ? 'Use official WLTP data. Present consumption in L/100km. Currency: Euro (€). Analyse for the European/Portuguese market.' : 'Mandatorily use the PBEV 2026 table (Inmetro) as the primary consumption source.'}`;
 
   try {
     const data = await callGemini(msg);
@@ -728,6 +889,128 @@ function render(data) {
 
   return html;
 }
+
+
+// ── REGIÃO BR / EU ────────────────────────────────────────────────────────
+const REGIONS = {
+  BR: {
+    flag: '🇧🇷',
+    labelPT: 'Brasil',
+    labelEN: 'Brazil',
+    dataSource: 'PBEV 2026 (Inmetro)',
+    priceSource: 'ANP mai/26',
+    currency: 'R$',
+    price1LabelPT: 'Gasolina', price1LabelEN: 'Gasoline', price1Val: 'R$ 6,65/L',
+    price2LabelPT: 'Etanol',   price2LabelEN: 'Ethanol',  price2Val: 'R$ 4,44/L', price2Show: true,
+    price3LabelPT: 'Energia',  price3LabelEN: 'Energy',   price3Val: 'R$ 0,75/kWh',
+    price4LabelPT: 'Etanol compensa?', price4LabelEN: 'Ethanol worth it?', price4Val: '✓ Sim', price4Show: true,
+    techTextPT: 'A <strong class="text-primary">Tabela PBEV 2026 (Inmetro)</strong> — atualizada em abril/2026 — reúne dados de consumo, autonomia e emissões de <strong class="text-primary">794 modelos</strong> vendidos no Brasil, incluindo elétricos, híbridos e flex. É a referência usada pelo nosso simulador.',
+    techTextEN: 'The <strong class="text-primary">PBEV 2026 table (Inmetro)</strong> — updated April 2026 — covers consumption, range and emissions data for <strong class="text-primary">794 models</strong> sold in Brazil, including EVs, hybrids and flex. It is the reference used by our simulator.',
+    stateLabelPT: 'Estado', stateLabelEN: 'State',
+    disclaimerPT: 'Dados: PBEV 2026 (Inmetro, abril/2026) · Preços: ANP maio/2026',
+    disclaimerEN: 'Data: PBEV 2026 (Inmetro, April 2026) · Prices: ANP May 2026',
+  },
+  EU: {
+    flag: '🇪🇺',
+    labelPT: 'União Europeia',
+    labelEN: 'European Union',
+    dataSource: 'WLTP (EU Official)',
+    priceSource: 'EU avg mai/26',
+    currency: '€',
+    price1LabelPT: 'Gasolina',  price1LabelEN: 'Gasoline', price1Val: '€ 1,72/L',
+    price2LabelPT: 'Diesel',    price2LabelEN: 'Diesel',   price2Val: '€ 1,58/L', price2Show: true,
+    price3LabelPT: 'Energia',   price3LabelEN: 'Energy',   price3Val: '€ 0,28/kWh',
+    price4LabelPT: 'Unidade consumo', price4LabelEN: 'Consumption unit', price4Val: 'L/100km', price4Show: true,
+    techTextPT: 'Na <strong class="text-primary">União Europeia</strong>, o consumo oficial é medido pelo ciclo <strong class="text-primary">WLTP</strong> (Worldwide Harmonised Light Vehicle Test Procedure) — padrão mais próximo do uso real. Dados via DGEG Portugal e ACEA. Consumo em <strong class="text-primary">L/100km</strong>.',
+    techTextEN: 'In the <strong class="text-primary">European Union</strong>, official consumption is measured using the <strong class="text-primary">WLTP</strong> cycle (Worldwide Harmonised Light Vehicle Test Procedure) — closer to real-world usage. Data via DGEG Portugal and ACEA. Consumption in <strong class="text-primary">L/100km</strong>.',
+    stateLabelPT: 'País', stateLabelEN: 'Country',
+    disclaimerPT: 'Dados: WLTP (padrão EU oficial) · Preços médios EU maio/2026',
+    disclaimerEN: 'Data: WLTP (EU official standard) · Average EU prices May 2026',
+  }
+};
+
+let currentRegion = 'BR';
+
+function setRegion(region, btn) {
+  currentRegion = region;
+  const r = REGIONS[region];
+  const l = lang;
+
+  // Botões de região
+  document.getElementById('regionBR').className = 'flex items-center gap-[5px] px-[10px] py-[4px] rounded-full text-[11px] font-semibold transition-all ' +
+    (region === 'BR' ? 'bg-tertiary text-on-tertiary' : 'text-on-surface-variant hover:text-on-surface');
+  document.getElementById('regionEU').className = 'flex items-center gap-[5px] px-[10px] py-[4px] rounded-full text-[11px] font-semibold transition-all ' +
+    (region === 'EU' ? 'bg-tertiary text-on-tertiary' : 'text-on-surface-variant hover:text-on-surface');
+
+  // Badge de fonte
+  const dsLabel = document.getElementById('dataSourceLabel');
+  if (dsLabel) dsLabel.textContent = r.dataSource;
+
+  // Sidebar preços
+  const ps = document.getElementById('priceSourceLabel');
+  if (ps) ps.textContent = r.priceSource;
+  const p1l = document.getElementById('price1Label'); if(p1l) p1l.textContent = l==='pt' ? r.price1LabelPT : r.price1LabelEN;
+  const p1v = document.getElementById('price1Val'); if(p1v) p1v.textContent = r.price1Val;
+  const p2l = document.getElementById('price2Label'); if(p2l) p2l.textContent = l==='pt' ? r.price2LabelPT : r.price2LabelEN;
+  const p2v = document.getElementById('price2Val'); if(p2v) p2v.textContent = r.price2Val;
+  const p2r = document.getElementById('price2Row'); if(p2r) p2r.style.display = r.price2Show ? '' : 'none';
+  const p3l = document.getElementById('price3Label'); if(p3l) p3l.textContent = l==='pt' ? r.price3LabelPT : r.price3LabelEN;
+  const p3v = document.getElementById('price3Val'); if(p3v) p3v.textContent = r.price3Val;
+  const p4l = document.getElementById('price4Label'); if(p4l) p4l.textContent = l==='pt' ? r.price4LabelPT : r.price4LabelEN;
+  const p4v = document.getElementById('price4Val'); if(p4v) p4v.textContent = r.price4Val;
+  const p4r = document.getElementById('price4Row'); if(p4r) p4r.style.display = r.price4Show ? '' : 'none';
+
+  // Destaque técnico
+  const tech = document.getElementById('techHighlightText');
+  if (tech) tech.innerHTML = l==='pt' ? r.techTextPT : r.techTextEN;
+
+  // Label estado/país
+  const stateLabel = document.querySelector('label[for="estado"], label#l-estado');
+  // Atualizar select de estado para país (EU)
+  updateStateSelect(region);
+
+  // Limpar resultado anterior
+  document.getElementById('resultArea').innerHTML = '';
+}
+
+function updateStateSelect(region) {
+  const sel = document.getElementById('estado');
+  if (!sel) return;
+  if (region === 'EU') {
+    sel.innerHTML = `
+      <option value="">Média EU</option>
+      <option value="Portugal">Portugal</option>
+      <option value="Espanha">Espanha</option>
+      <option value="França">França</option>
+      <option value="Alemanha">Alemanha</option>
+      <option value="Itália">Itália</option>
+      <option value="Holanda">Holanda</option>
+      <option value="Bélgica">Bélgica</option>
+      <option value="Suécia">Suécia</option>
+      <option value="Noruega">Noruega</option>
+      <option value="Reino Unido">Reino Unido</option>
+    `;
+  } else {
+    sel.innerHTML = `
+      <option value="">Média nacional</option>
+      <option value="SP">São Paulo</option>
+      <option value="RJ">Rio de Janeiro</option>
+      <option value="MG">Minas Gerais</option>
+      <option value="RS">Rio Grande do Sul</option>
+      <option value="PR">Paraná</option>
+      <option value="SC">Santa Catarina</option>
+      <option value="BA">Bahia</option>
+      <option value="GO">Goiás</option>
+      <option value="DF">Distrito Federal</option>
+      <option value="CE">Ceará</option>
+      <option value="PE">Pernambuco</option>
+      <option value="AM">Amazonas</option>
+    `;
+  }
+}
+
+// Atualizar setLang para também atualizar textos de região
+const _origSetLang = setLang;
 
 // ── TERMS ─────────────────────────────────────────────────────────────────
 function acceptTerms() {
