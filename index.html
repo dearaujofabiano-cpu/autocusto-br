@@ -275,31 +275,71 @@ body{min-height:max(884px,100dvh)}
           <span class="material-symbols-outlined" style="font-size:13px;vertical-align:-2px;margin-right:3px">info</span>
           <span id="vehicle-hint-text">Preencha a <strong style="color:#c6c6ca">MARCA</strong>, <strong style="color:#c6c6ca">MODELO</strong> e <strong style="color:#c6c6ca">VERSÃO</strong> dos veículos a serem comparados</span>
         </p>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-sm" id="vehicleGrid">
-          <!-- Veículo A -->
-          <div class="flex flex-col gap-xs">
-            <label class="text-label-sm uppercase tracking-wider text-on-surface-variant" id="l-vA-upper">Veículo A</label>
-            <div class="relative input-focus-glow transition-all duration-200 rounded-lg border border-outline bg-surface-container-lowest flex items-center px-sm py-xs">
-              <span class="material-symbols-outlined text-outline mr-sm text-[18px]">search</span>
-              <input id="veiculoA" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/50 font-body-md outline-none" placeholder="Ex: VW Polo Confortline 2026" type="text"/>
+        <!-- Veículo A -->
+        <div class="flex flex-col gap-xs mb-sm">
+          <label class="text-label-sm uppercase tracking-wider text-on-surface-variant" id="l-vA-upper">Veículo A</label>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-xs">
+            <div class="input-focus-glow rounded-lg border border-outline bg-surface-container-lowest px-sm py-xs flex flex-col">
+              <span class="text-[10px] text-outline uppercase tracking-wider mb-[2px]" id="l-marca-a">Marca</span>
+              <input id="veiculoA_marca" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/40 font-body-md outline-none text-sm" placeholder="Ex: Volkswagen" type="text"/>
+            </div>
+            <div class="input-focus-glow rounded-lg border border-outline bg-surface-container-lowest px-sm py-xs flex flex-col">
+              <span class="text-[10px] text-outline uppercase tracking-wider mb-[2px]" id="l-modelo-a">Modelo</span>
+              <input id="veiculoA_modelo" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/40 font-body-md outline-none text-sm" placeholder="Ex: Polo" type="text"/>
+            </div>
+            <div class="input-focus-glow rounded-lg border border-outline bg-surface-container-lowest px-sm py-xs flex flex-col">
+              <span class="text-[10px] text-outline uppercase tracking-wider mb-[2px]" id="l-versao-a">Versão</span>
+              <input id="veiculoA_versao" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/40 font-body-md outline-none text-sm" placeholder="Ex: Confortline" type="text"/>
+            </div>
+            <div class="input-focus-glow rounded-lg border border-outline bg-surface-container-lowest px-sm py-xs flex flex-col">
+              <span class="text-[10px] text-outline uppercase tracking-wider mb-[2px]" id="l-ano-a">Ano</span>
+              <input id="veiculoA_ano" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/40 font-body-md outline-none text-sm" placeholder="Ex: 2026" type="text" maxlength="4"/>
             </div>
           </div>
-          <!-- Veículo B -->
-          <div class="flex flex-col gap-xs">
-            <label class="text-label-sm uppercase tracking-wider text-on-surface-variant" id="l-vB-upper">Veículo B</label>
-            <div class="relative input-focus-glow transition-all duration-200 rounded-lg border border-outline bg-surface-container-lowest flex items-center px-sm py-xs">
-              <span class="material-symbols-outlined text-outline mr-sm text-[18px]">search</span>
-              <input id="veiculoB" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/50 font-body-md outline-none" placeholder="Ex: BYD Dolphin Mini 2026" type="text"/>
+        </div>
+        <!-- Veículo B -->
+        <div class="flex flex-col gap-xs mb-sm">
+          <label class="text-label-sm uppercase tracking-wider text-on-surface-variant" id="l-vB-upper">Veículo B</label>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-xs">
+            <div class="input-focus-glow rounded-lg border border-outline bg-surface-container-lowest px-sm py-xs flex flex-col">
+              <span class="text-[10px] text-outline uppercase tracking-wider mb-[2px]" id="l-marca-b">Marca</span>
+              <input id="veiculoB_marca" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/40 font-body-md outline-none text-sm" placeholder="Ex: BYD" type="text"/>
+            </div>
+            <div class="input-focus-glow rounded-lg border border-outline bg-surface-container-lowest px-sm py-xs flex flex-col">
+              <span class="text-[10px] text-outline uppercase tracking-wider mb-[2px]" id="l-modelo-b">Modelo</span>
+              <input id="veiculoB_modelo" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/40 font-body-md outline-none text-sm" placeholder="Ex: Dolphin" type="text"/>
+            </div>
+            <div class="input-focus-glow rounded-lg border border-outline bg-surface-container-lowest px-sm py-xs flex flex-col">
+              <span class="text-[10px] text-outline uppercase tracking-wider mb-[2px]" id="l-versao-b">Versão</span>
+              <input id="veiculoB_versao" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/40 font-body-md outline-none text-sm" placeholder="Ex: Mini" type="text"/>
+            </div>
+            <div class="input-focus-glow rounded-lg border border-outline bg-surface-container-lowest px-sm py-xs flex flex-col">
+              <span class="text-[10px] text-outline uppercase tracking-wider mb-[2px]" id="l-ano-b">Ano</span>
+              <input id="veiculoB_ano" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/40 font-body-md outline-none text-sm" placeholder="Ex: 2026" type="text" maxlength="4"/>
             </div>
           </div>
         </div>
         <!-- Veículo C toggle -->
-        <div id="veiculoCRow" class="hidden mt-sm">
-          <div class="flex flex-col gap-xs">
+        <div id="veiculoCRow" class="hidden mt-xs">
+          <div class="flex flex-col gap-xs mb-sm">
             <label class="text-label-sm uppercase tracking-wider text-on-surface-variant" id="l-vC-upper">Veículo C (opcional)</label>
-            <div class="relative input-focus-glow transition-all duration-200 rounded-lg border border-outline bg-surface-container-lowest flex items-center px-sm py-xs">
-              <span class="material-symbols-outlined text-outline mr-sm text-[18px]">search</span>
-              <input id="veiculoC" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/50 font-body-md outline-none" placeholder="Ex: Toyota Corolla Hybrid 2025" type="text"/>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-xs">
+              <div class="input-focus-glow rounded-lg border border-outline bg-surface-container-lowest px-sm py-xs flex flex-col">
+                <span class="text-[10px] text-outline uppercase tracking-wider mb-[2px]" id="l-marca-c">Marca</span>
+                <input id="veiculoC_marca" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/40 font-body-md outline-none text-sm" placeholder="Ex: Toyota" type="text"/>
+              </div>
+              <div class="input-focus-glow rounded-lg border border-outline bg-surface-container-lowest px-sm py-xs flex flex-col">
+                <span class="text-[10px] text-outline uppercase tracking-wider mb-[2px]" id="l-modelo-c">Modelo</span>
+                <input id="veiculoC_modelo" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/40 font-body-md outline-none text-sm" placeholder="Ex: Corolla" type="text"/>
+              </div>
+              <div class="input-focus-glow rounded-lg border border-outline bg-surface-container-lowest px-sm py-xs flex flex-col">
+                <span class="text-[10px] text-outline uppercase tracking-wider mb-[2px]" id="l-versao-c">Versão</span>
+                <input id="veiculoC_versao" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/40 font-body-md outline-none text-sm" placeholder="Ex: Hybrid" type="text"/>
+              </div>
+              <div class="input-focus-glow rounded-lg border border-outline bg-surface-container-lowest px-sm py-xs flex flex-col">
+                <span class="text-[10px] text-outline uppercase tracking-wider mb-[2px]" id="l-ano-c">Ano</span>
+                <input id="veiculoC_ano" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/40 font-body-md outline-none text-sm" placeholder="Ex: 2025" type="text" maxlength="4"/>
+              </div>
             </div>
           </div>
         </div>
@@ -632,9 +672,9 @@ function setLang(l, btn) {
   });
 
   // Atualizar placeholders
-  const pA = document.getElementById('veiculoA');
-  const pB = document.getElementById('veiculoB');
-  const pC = document.getElementById('veiculoC');
+  const pA = { value: getVeiculo('veiculoA') };
+  const pB = { value: getVeiculo('veiculoB') };
+  const pC = { value: getVeiculo('veiculoC') };
   const pKm = document.getElementById('kmInput');
   if (pA) pA.placeholder = l==='pt' ? 'Ex: VW Polo Confortline 2026' : 'Ex: VW Polo Confortline 2026';
   if (pB) pB.placeholder = l==='pt' ? 'Ex: BYD Dolphin Mini 2026' : 'Ex: BYD Dolphin Mini 2026';
@@ -662,6 +702,15 @@ function setLang(l, btn) {
 
 
 let vehicleCVisible = false;
+
+  function getVeiculo(prefix) {
+    const marca  = (document.getElementById(prefix+'_marca')?.value||'').trim();
+    const modelo = (document.getElementById(prefix+'_modelo')?.value||'').trim();
+    const versao = (document.getElementById(prefix+'_versao')?.value||'').trim();
+    const ano    = (document.getElementById(prefix+'_ano')?.value||'').trim();
+    return [marca, modelo, versao, ano].filter(Boolean).join(' ');
+  }
+
 function toggleVehicleC() {
   vehicleCVisible = !vehicleCVisible;
   document.getElementById('veiculoCRow').classList.toggle('hidden', !vehicleCVisible);
@@ -671,9 +720,23 @@ function toggleVehicleC() {
 }
 
 function fillExample(a, b) {
-  document.getElementById('veiculoA').value = a;
-  document.getElementById('veiculoB').value = b;
-  document.getElementById('veiculoA').dispatchEvent(new Event('input'));
+  // Preenche Veículo A a partir da string "Marca Modelo Versão Ano"
+  (function(str, prefix){
+    const p = str.split(' ');
+    const ano = p.length>=2 && /^\d{4}$/.test(p[p.length-1]) ? p.pop() : '';
+    document.getElementById(prefix+'_marca').value  = p[0]||'';
+    document.getElementById(prefix+'_modelo').value = p[1]||'';
+    document.getElementById(prefix+'_versao').value = p.slice(2).join(' ')||'';
+    document.getElementById(prefix+'_ano').value    = ano;
+  })(a, 'veiculoA');
+  (function(str, prefix){
+    const p = str.split(' ');
+    const ano = p.length>=2 && /^\d{4}$/.test(p[p.length-1]) ? p.pop() : '';
+    document.getElementById(prefix+'_marca').value  = p[0]||'';
+    document.getElementById(prefix+'_modelo').value = p[1]||'';
+    document.getElementById(prefix+'_versao').value = p.slice(2).join(' ')||'';
+    document.getElementById(prefix+'_ano').value    = ano;
+  })(b, 'veiculoB');
 }
 
 // KM sync
@@ -722,9 +785,9 @@ async function callGemini(msg) {
 
 // ── RUN ────────────────────────────────────────────────────────────────────
 async function runComparativo() {
-  const vA = document.getElementById('veiculoA').value.trim();
-  const vB = document.getElementById('veiculoB').value.trim();
-  const vC = document.getElementById('veiculoC').value.trim();
+  const vA = getVeiculo('veiculoA');
+  const vB = getVeiculo('veiculoB');
+  const vC = getVeiculo('veiculoC');
   const km = document.getElementById('kmInput').value.trim();
   const estado = document.getElementById('estado').value;
   if (!vA || !vB || !km) {
