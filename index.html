@@ -496,18 +496,18 @@ LANGUAGE RULES:
 CLASSIFY each vehicle: ICE (combustão/flex/gasolina), HEV (híbrido sem plug), PHEV (híbrido plug-in), BEV (100% elétrico)
 
 REGION RULES — read the REGION field in the user message:
-- If REGIÃO/REGION = Brasil/Brazil: use PBEV 2026 (Inmetro), units km/L or km/kWh, currency R$, include ethanol scenario
+- If REGIÃO/REGION = Brasil/Brazil: use PBEV Inmetro, units km/L or km/kWh, currency R$, include ethanol scenario
 - If REGIÃO/REGION = União Europeia/European Union: use WLTP cycle (EU official), units L/100km or kWh/100km, currency €, NO ethanol (use gasoline + diesel + electric), adapt analysis to European market (Portugal, Spain, France, etc.)
 - ALWAYS follow the RESPOND IN [LANGUAGE] instruction at the top of each message
 
 CONSUMPTION DATA — priority order (MANDATORY):
-1. Tabela PBEV 2026 (Inmetro) — versão abril/2026, gov.br/inmetro — FONTE PRIORITÁRIA OBRIGATÓRIA
+1. Tabela PBEV Inmetro — versão abril/2026, gov.br/inmetro — FONTE PRIORITÁRIA OBRIGATÓRIA
 2. Especificações oficiais do fabricante para o mercado brasileiro (ano-modelo vigente)
 3. Imprensa especializada brasileira 2025/2026: Quatro Rodas, Motor Show, Mobiauto, Autoesporte
 4. Estimativa conservadora — informar claramente: "Estimativa — não localizado no PBEV 2026"
 
 CAMPO "fonte" — preencher EXATAMENTE assim:
-- Dado do PBEV 2026: "PBEV 2026 (Inmetro)"
+- Dado do PBEV 2026: "PBEV Inmetro"
 - Dado do fabricante: "Fabricante — [ano-modelo]"
 - Estimativa: "Estimativa — não localizado no PBEV 2026"
 NUNCA escreva "PBEV 2024" ou anos anteriores.
@@ -805,7 +805,7 @@ async function runComparativo() {
     : 'LANG:EN';
 
   const msg = lang === 'pt'
-    ? `${langInstruction}\nREGIÃO: ${regionLabel}\n${fonte}\n${precos}\n\nCompare os veículos abaixo com ${km} km por dia${estadoLabel}:\nVeículo A: ${vA}\nVeículo B: ${vB}${vC?'\nVeículo C: '+vC:''}\n${isEU ? 'REGIÃO EU: WLTP, sem etanol, gasolina/diesel, Euro(€), L/100km.' : 'Use obrigatoriamente a Tabela PBEV 2026 (Inmetro) como fonte primária.'}`
+    ? `${langInstruction}\nREGIÃO: ${regionLabel}\n${fonte}\n${precos}\n\nCompare os veículos abaixo com ${km} km por dia${estadoLabel}:\nVeículo A: ${vA}\nVeículo B: ${vB}${vC?'\nVeículo C: '+vC:''}\n${isEU ? 'REGIÃO EU: WLTP, sem etanol, gasolina/diesel, Euro(€), L/100km.' : 'Use obrigatoriamente a Tabela PBEV Inmetro como fonte primária.'}`
     : `${langInstruction}\nREGION: ${regionLabel}\n${fonte}\n${precos}\n\nCompare the vehicles below with ${km} km per day${estadoLabel}:\nVehicle A: ${vA}\nVehicle B: ${vB}${vC?'\nVehicle C: '+vC:''}\n${isEU ? 'REGION EU: WLTP, no ethanol, gasoline/diesel only, Euro(€), L/100km.' : 'Mandatorily use the PBEV 2026 table (Inmetro) as the primary consumption source.'}`;
 
   try {
@@ -882,7 +882,7 @@ function render(data) {
             ${isWin?`<span class="flex items-center gap-xs text-tertiary" style="font-size:11px;font-weight:700;letter-spacing:.04em"><span class="material-symbols-outlined" style="font-size:14px">check_circle</span>${lang==='pt'?'MAIS ECONÔMICO':'MOST EFFICIENT'}</span>`:''}
           </div>
           <p class="text-on-surface font-headline-md" style="font-size:15px;line-height:1.3;font-weight:600">${v.nome}${v.ano && !v.nome.includes(v.ano)?' '+v.ano:''}</p>
-          <p class="text-on-surface-variant" style="font-size:11px;margin-top:2px">${num(v.consumo_oficial.cidade,1)} ${v.consumo_oficial.unidade} ${lang==='pt'?'cidade':'city'} · ${currentRegion==='EU'?v.consumo_oficial.fonte.replace('PBEV 2026 (Inmetro)','WLTP (EU)').replace('não localizado no PBEV 2026','não localizado no WLTP').replace('PBEV','WLTP'):v.consumo_oficial.fonte}${v.autonomia_eletrica_km?' · '+v.autonomia_eletrica_km+' km elétrico':''}</p>
+          <p class="text-on-surface-variant" style="font-size:11px;margin-top:2px">${num(v.consumo_oficial.cidade,1)} ${v.consumo_oficial.unidade} ${lang==='pt'?'cidade':'city'} · ${currentRegion==='EU'?v.consumo_oficial.fonte.replace('PBEV Inmetro','WLTP (EU)').replace('não localizado no PBEV 2026','não localizado no WLTP').replace('PBEV','WLTP'):v.consumo_oficial.fonte}${v.autonomia_eletrica_km?' · '+v.autonomia_eletrica_km+' km elétrico':''}</p>
         </div>
       </div>
       <!-- best scenario -->
@@ -1082,4 +1082,5 @@ function acceptTerms() {
 </script>
 </body>
 </html>
+
 
