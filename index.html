@@ -278,7 +278,7 @@ body{min-height:max(884px,100dvh)}
         <!-- Veículo A -->
         <div class="flex flex-col gap-xs mb-sm">
           <label class="text-label-sm uppercase tracking-wider text-on-surface-variant" id="l-vA-upper">Veículo A</label>
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-xs">
+          <div class="grid grid-cols-3 gap-xs">
             <div class="input-focus-glow rounded-lg border border-outline bg-surface-container-lowest px-sm py-xs flex flex-col">
               <span class="text-[10px] text-outline uppercase tracking-wider mb-[2px]" id="l-marca-a">Marca</span>
               <input id="veiculoA_marca" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/40 font-body-md outline-none text-sm" placeholder="Ex: Volkswagen" type="text"/>
@@ -291,16 +291,13 @@ body{min-height:max(884px,100dvh)}
               <span class="text-[10px] text-outline uppercase tracking-wider mb-[2px]" id="l-versao-a">Versão</span>
               <input id="veiculoA_versao" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/40 font-body-md outline-none text-sm" placeholder="Ex: Confortline" type="text"/>
             </div>
-            <div class="input-focus-glow rounded-lg border border-outline bg-surface-container-lowest px-sm py-xs flex flex-col">
-              <span class="text-[10px] text-outline uppercase tracking-wider mb-[2px]" id="l-ano-a">Ano</span>
-              <input id="veiculoA_ano" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/40 font-body-md outline-none text-sm" placeholder="Ex: 2026" type="text" maxlength="4"/>
-            </div>
+
           </div>
         </div>
         <!-- Veículo B -->
         <div class="flex flex-col gap-xs mb-sm">
           <label class="text-label-sm uppercase tracking-wider text-on-surface-variant" id="l-vB-upper">Veículo B</label>
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-xs">
+          <div class="grid grid-cols-3 gap-xs">
             <div class="input-focus-glow rounded-lg border border-outline bg-surface-container-lowest px-sm py-xs flex flex-col">
               <span class="text-[10px] text-outline uppercase tracking-wider mb-[2px]" id="l-marca-b">Marca</span>
               <input id="veiculoB_marca" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/40 font-body-md outline-none text-sm" placeholder="Ex: BYD" type="text"/>
@@ -313,17 +310,14 @@ body{min-height:max(884px,100dvh)}
               <span class="text-[10px] text-outline uppercase tracking-wider mb-[2px]" id="l-versao-b">Versão</span>
               <input id="veiculoB_versao" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/40 font-body-md outline-none text-sm" placeholder="Ex: Mini" type="text"/>
             </div>
-            <div class="input-focus-glow rounded-lg border border-outline bg-surface-container-lowest px-sm py-xs flex flex-col">
-              <span class="text-[10px] text-outline uppercase tracking-wider mb-[2px]" id="l-ano-b">Ano</span>
-              <input id="veiculoB_ano" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/40 font-body-md outline-none text-sm" placeholder="Ex: 2026" type="text" maxlength="4"/>
-            </div>
+
           </div>
         </div>
         <!-- Veículo C toggle -->
         <div id="veiculoCRow" class="hidden mt-xs">
           <div class="flex flex-col gap-xs mb-sm">
             <label class="text-label-sm uppercase tracking-wider text-on-surface-variant" id="l-vC-upper">Veículo C (opcional)</label>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-xs">
+            <div class="grid grid-cols-3 gap-xs">
               <div class="input-focus-glow rounded-lg border border-outline bg-surface-container-lowest px-sm py-xs flex flex-col">
                 <span class="text-[10px] text-outline uppercase tracking-wider mb-[2px]" id="l-marca-c">Marca</span>
                 <input id="veiculoC_marca" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/40 font-body-md outline-none text-sm" placeholder="Ex: Toyota" type="text"/>
@@ -336,10 +330,7 @@ body{min-height:max(884px,100dvh)}
                 <span class="text-[10px] text-outline uppercase tracking-wider mb-[2px]" id="l-versao-c">Versão</span>
                 <input id="veiculoC_versao" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/40 font-body-md outline-none text-sm" placeholder="Ex: Hybrid" type="text"/>
               </div>
-              <div class="input-focus-glow rounded-lg border border-outline bg-surface-container-lowest px-sm py-xs flex flex-col">
-                <span class="text-[10px] text-outline uppercase tracking-wider mb-[2px]" id="l-ano-c">Ano</span>
-                <input id="veiculoC_ano" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/40 font-body-md outline-none text-sm" placeholder="Ex: 2025" type="text" maxlength="4"/>
-              </div>
+
             </div>
           </div>
         </div>
@@ -707,8 +698,7 @@ let vehicleCVisible = false;
     const marca  = (document.getElementById(prefix+'_marca')?.value||'').trim();
     const modelo = (document.getElementById(prefix+'_modelo')?.value||'').trim();
     const versao = (document.getElementById(prefix+'_versao')?.value||'').trim();
-    const ano    = (document.getElementById(prefix+'_ano')?.value||'').trim();
-    return [marca, modelo, versao, ano].filter(Boolean).join(' ');
+    return [marca, modelo, versao].filter(Boolean).join(' ');
   }
 
 function toggleVehicleC() {
@@ -956,7 +946,7 @@ function render(data) {
       <span class="material-symbols-outlined text-tertiary text-[18px]">psychology</span>
       <p class="text-label-sm text-outline-variant uppercase">${lang==='pt'?'Análise':'Analysis'}</p>
     </div>
-    <div class="analise-block">${data.analise}</div>
+    <div class="analise-block">${data.analise || data.comparativo?.analise || "—"}</div>
     <p class="text-label-sm text-outline-variant mt-sm text-center">Dados: PBEV 2026 (Inmetro, abril/2026) · Preços: ANP maio/2026 · Estimativas para planejamento</p>
   </div>
   </div>`;
