@@ -151,10 +151,10 @@ body{min-height:max(884px,100dvh)}
         <h3>2. Origem e Limitações dos Dados</h3>
         <p>Os dados utilizados nos cálculos são provenientes de fontes públicas oficiais, incluindo:</p>
         <ul>
-          <li>Tabela PBEV 2026 — Inmetro (gov.br/inmetro)</li>
-          <li>Agência Nacional do Petróleo — ANP (preços de referência)</li>
+          <li>Tabela PBEV Inmetro e WLTP</li>
+          <li>Preços médios de combustíveis do Brasil e Europa</li>
           <li>Informações declaradas pelos fabricantes</li>
-          <li>Imprensa especializada brasileira</li>
+          <li>Informações declaradas pela imprensa especializada brasileira</li>
         </ul>
         <p style="margin-top:.5rem">Os valores de consumo são obtidos em <strong style="color:#d8e3fb">condições laboratoriais padronizadas</strong> e podem diferir significativamente do consumo real, que varia conforme estilo de condução, condições de tráfego, estado de conservação do veículo, topografia, temperatura, carregamento e outros fatores.</p>
       </div>
@@ -213,7 +213,7 @@ body{min-height:max(884px,100dvh)}
     <div class="flex bg-surface-container-lowest border border-outline-variant rounded-full p-[3px] gap-[2px]" id="regionSelector">
       <button id="regionBR" onclick="setRegion('BR',this)"
         class="flex items-center gap-[5px] px-[10px] py-[4px] rounded-full text-[11px] font-semibold transition-all bg-tertiary text-on-tertiary"
-        title="Dados PBEV 2026 (Inmetro) — Brasil">
+        title="Dados PBEV Inmetro — Brasil">
         🇧🇷 <span class="hidden sm:inline">Brasil</span>
       </button>
       <button id="regionEU" onclick="setRegion('EU',this)"
@@ -232,7 +232,7 @@ body{min-height:max(884px,100dvh)}
     </div>
     <span class="hidden md:flex items-center gap-xs text-label-sm text-outline-variant" id="dataSourceBadge">
       <span class="w-2 h-2 rounded-full bg-tertiary inline-block animate-pulse"></span>
-      <span id="dataSourceLabel">PBEV 2026 (Inmetro)</span>
+      <span id="dataSourceLabel">PBEV Inmetro</span>
     </span>
   </div>
 </header>
@@ -254,7 +254,7 @@ body{min-height:max(884px,100dvh)}
 <div id="disclaimerBanner">
   <span class="material-symbols-outlined disc-icon">info</span>
   <div class="disc-text">
-    <span id="disc-main-text"><strong id="disc-title">Dados para planejamento.</strong> Os valores são calculados com base em fontes oficiais (PBEV 2026/Inmetro, ANP) em condições padronizadas e podem divergir do uso real. Variações de tráfego, estilo de condução, temperatura e conservação do veículo afetam o consumo efetivo. Não utilize como única base para decisões de compra.</span>
+    <span id="disc-main-text"><strong id="disc-title">Dados para planejamento.</strong> Os valores são calculados com base em fontes oficiais (PBEV Inmetro e WLTP) em condições padronizadas e podem divergir do uso real. Variações de tráfego, estilo de condução, temperatura e conservação do veículo afetam o consumo efetivo. Não utilize como única base para decisões de compra.</span>
     <button class="terms-link" onclick="document.getElementById('termsModal').style.display='flex'" style="display:inline;text-decoration:underline;background:none;border:none;padding:0;color:#45474a;cursor:pointer;font-size:11px" id="disc-terms-link"> Ver termos completos</button>
   </div>
   <button class="disc-close" onclick="document.getElementById('disclaimerBanner').style.display='none'" title="Fechar">✕</button>
@@ -359,26 +359,7 @@ body{min-height:max(884px,100dvh)}
             <input id="kmRange" class="w-full h-1 bg-surface-container-highest rounded-lg appearance-none cursor-pointer accent-tertiary mt-xs" max="500" min="1" type="range" value="20"/>
             <p id="cicloLabel" class="text-label-sm text-outline-variant" id="cicloLabelText">Ciclo: <span class="text-tertiary" id="cicloValue">Urbano</span></p>
           </div>
-          <!-- Perfil / Estado -->
-          <div class="flex flex-col gap-xs">
-            <label class="text-label-sm uppercase tracking-wider text-on-surface-variant">Estado</label>
-            <select id="estado" class="bg-surface-container-lowest border border-outline rounded-lg px-sm py-xs text-on-surface font-body-md focus:border-tertiary outline-none appearance-none">
-              <option value="">Média nacional</option>
-              <option value="SP">São Paulo</option>
-              <option value="RJ">Rio de Janeiro</option>
-              <option value="MG">Minas Gerais</option>
-              <option value="RS">Rio Grande do Sul</option>
-              <option value="PR">Paraná</option>
-              <option value="SC">Santa Catarina</option>
-              <option value="BA">Bahia</option>
-              <option value="GO">Goiás</option>
-              <option value="DF">Distrito Federal</option>
-              <option value="CE">Ceará</option>
-              <option value="PE">Pernambuco</option>
-              <option value="AM">Amazonas</option>
-            </select>
 
-          </div>
         </div>
 
         <!-- CTA -->
@@ -387,7 +368,7 @@ body{min-height:max(884px,100dvh)}
             <span id="btnIcon" class="material-symbols-outlined">compare_arrows</span>
             <span id="btn-label">Comparar Agora</span>
           </button>
-          <p class="text-center text-label-sm text-outline-variant mt-md">Dados baseados no PBEV 2026 (Inmetro, abril/2026) · Preços ANP maio/2026</p>
+          <p class="text-center text-label-sm text-outline-variant mt-md">Dados: PBEV Inmetro · Preços médios públicos de combustíveis · Estimativas para planejamento</p>
         </div>
       </div>
 
@@ -406,7 +387,7 @@ body{min-height:max(884px,100dvh)}
           <span class="material-symbols-outlined text-tertiary" style="font-size:48px;opacity:.3">electric_car</span>
         </div>
         <p class="font-body-md text-on-surface-variant" id="techHighlightText">
-          A <strong class="text-primary">Tabela PBEV 2026 (Inmetro)</strong> — atualizada em abril/2026 — reúne dados de consumo, autonomia e emissões de <strong class="text-primary">794 modelos</strong> vendidos no Brasil, incluindo elétricos, híbridos e flex. É a referência usada pelo nosso simulador.
+          A <strong class="text-primary">Tabela PBEV Inmetro</strong> reúne dados de consumo, autonomia e emissões de centenas de modelos vendidos no Brasil, incluindo elétricos, híbridos e flex. Para o mercado europeu usamos o ciclo <strong class="text-primary">WLTP</strong>. São as referências usadas pelo nosso simulador.
         </p>
       </div>
 
@@ -467,7 +448,7 @@ body{min-height:max(884px,100dvh)}
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-disclaimer">
-      <strong style="color:#8f9094" id="footer-disclaimer-label">Aviso Legal:</strong> Os resultados apresentados são estimativas baseadas em dados públicos do PBEV 2026 (Inmetro, abril/2026) e preços de referência da ANP (maio/2026). Valores reais de consumo variam conforme estilo de condução, condições de tráfego, estado do veículo e fatores ambientais. Esta ferramenta tem caráter exclusivamente educacional e de planejamento. A Force Training não se responsabiliza por decisões tomadas com base nestas informações.
+      <strong style="color:#8f9094" id="footer-disclaimer-label">Aviso Legal:</strong> Os resultados apresentados são estimativas baseadas em dados públicos do PBEV Inmetro e preços médios públicos de combustíveis. Valores reais de consumo variam conforme estilo de condução, condições de tráfego, estado do veículo e fatores ambientais. Esta ferramenta tem caráter exclusivamente educacional e de planejamento. A Force Training não se responsabiliza por decisões tomadas com base nestas informações.
       <br>
       <button onclick="document.getElementById('termsModal').style.display='flex'" class="terms-link" style="margin-top:4px">Termos de Uso completos</button>
     </div>
@@ -536,7 +517,7 @@ CYCLE SELECTION:
 - 31 a 100 km/dia → média ponderada 70% cidade + 30% estrada
 - acima de 100 km/dia → consumo estrada
 
-REFERENCE PRICES (ANP maio/2026):
+REFERENCE PRICES (public averages mai/2026):
 gasolina R$6,65/L | etanol R$4,44/L | energia elétrica R$0,75/kWh
 
 ETHANOL RULE: Para veículos flex, calcule SEMPRE gasolina E etanol.
@@ -676,8 +657,8 @@ function setLang(l, btn) {
   const discMain = document.getElementById('disc-main-text');
   if (discMain) {
     discMain.innerHTML = l === 'pt'
-      ? '<strong id="disc-title">Dados para planejamento.</strong> Os valores são calculados com base em fontes oficiais (PBEV 2026/Inmetro, ANP) em condições padronizadas e podem divergir do uso real. Variações de tráfego, estilo de condução, temperatura e conservação do veículo afetam o consumo efetivo. Não utilize como única base para decisões de compra.'
-      : '<strong id="disc-title">Planning data.</strong> Values are calculated based on official sources (PBEV 2026/Inmetro, ANP, WLTP) under standardised conditions and may differ from real usage. Traffic, driving style, temperature and vehicle condition affect actual consumption. Do not use as the sole basis for purchasing decisions.';
+      ? '<strong id="disc-title">Dados para planejamento.</strong> Os valores são calculados com base em fontes oficiais (PBEV Inmetro e WLTP) em condições padronizadas e podem divergir do uso real. Variações de tráfego, estilo de condução, temperatura e conservação do veículo afetam o consumo efetivo. Não utilize como única base para decisões de compra.'
+      : '<strong id="disc-title">Planning data.</strong> Values are calculated based on official sources (PBEV Inmetro and WLTP) under standardised conditions and may differ from real usage. Traffic, driving style, temperature and vehicle condition affect actual consumption. Do not use as the sole basis for purchasing decisions.';
   }
 
   // Traduzir o cicloLabel
@@ -779,7 +760,7 @@ async function runComparativo() {
   const vB = getVeiculo('veiculoB');
   const vC = getVeiculo('veiculoC');
   const km = document.getElementById('kmInput').value.trim();
-  const estado = document.getElementById('estado').value;
+  const estado = '';
   if (!vA || !vB || !km) {
     alert(lang==='pt'?'Preencha ao menos Veículo A, Veículo B e Km por dia.':'Fill in Vehicle A, Vehicle B and Km per day.');
     return;
@@ -788,11 +769,11 @@ async function runComparativo() {
   const out = document.getElementById('resultArea');
   btn.disabled = true;
   document.getElementById('btnIcon').className = 'material-symbols-outlined spin';
-  document.getElementById('btn-label').textContent = lang==='pt' ? 'Consultando PBEV 2026...' : 'Fetching PBEV 2026...';
+  document.getElementById('btn-label').textContent = lang==='pt' ? 'Consultando dados...' : 'Fetching data...';
 
   out.innerHTML = `<div class="glass-panel p-md rounded-xl flex items-center gap-sm text-on-surface-variant">
     <span class="material-symbols-outlined spin text-tertiary">autorenew</span>
-    <span>${lang==='pt'?'Consultando Tabela PBEV 2026 e calculando custos...':'Fetching PBEV 2026 table and calculating costs...'}</span>
+    <span>${lang==='pt'?'Consultando dados e calculando custos...':'Fetching data and calculating costs...'}</span>
   </div>`;
 
   // Modo região
@@ -947,7 +928,7 @@ function render(data) {
       <p class="text-label-sm text-outline-variant uppercase">${lang==='pt'?'Análise':'Analysis'}</p>
     </div>
     <div class="analise-block">${data.analise || data.comparativo?.analise || "—"}</div>
-    <p class="text-label-sm text-outline-variant mt-sm text-center">Dados: PBEV 2026 (Inmetro, abril/2026) · Preços: ANP maio/2026 · Estimativas para planejamento</p>
+    <p class="text-label-sm text-outline-variant mt-sm text-center">Dados: PBEV Inmetro · Preços médios públicos de combustíveis · Estimativas para planejamento</p>
   </div>
   </div>`;
 
@@ -961,18 +942,18 @@ const REGIONS = {
     flag: '🇧🇷',
     labelPT: 'Brasil',
     labelEN: 'Brazil',
-    dataSource: 'PBEV 2026 (Inmetro)',
+    dataSource: 'PBEV Inmetro',
     priceSource: 'ANP mai/26',
     currency: 'R$',
     price1LabelPT: 'Gasolina', price1LabelEN: 'Gasoline', price1Val: 'R$ 6,65/L',
     price2LabelPT: 'Etanol',   price2LabelEN: 'Ethanol',  price2Val: 'R$ 4,44/L', price2Show: true,
     price3LabelPT: 'Energia',  price3LabelEN: 'Energy',   price3Val: 'R$ 0,75/kWh',
     price4LabelPT: 'Etanol compensa?', price4LabelEN: 'Ethanol worth it?', price4Val: '✓ Sim', price4Show: true,
-    techTextPT: 'A <strong class="text-primary">Tabela PBEV 2026 (Inmetro)</strong> — atualizada em abril/2026 — reúne dados de consumo, autonomia e emissões de <strong class="text-primary">794 modelos</strong> vendidos no Brasil, incluindo elétricos, híbridos e flex. É a referência usada pelo nosso simulador.',
+    techTextPT: 'A <strong class="text-primary">Tabela PBEV Inmetro</strong> reúne dados de consumo, autonomia e emissões de centenas de modelos vendidos no Brasil, incluindo elétricos, híbridos e flex. Para o mercado europeu usamos o ciclo <strong class="text-primary">WLTP</strong>. São as referências usadas pelo nosso simulador.',
     techTextEN: 'The <strong class="text-primary">PBEV 2026 table (Inmetro)</strong> — updated April 2026 — covers consumption, range and emissions data for <strong class="text-primary">794 models</strong> sold in Brazil, including EVs, hybrids and flex. It is the reference used by our simulator.',
-    stateLabelPT: 'Estado', stateLabelEN: 'State',
-    disclaimerPT: 'Dados: PBEV 2026 (Inmetro, abril/2026) · Preços: ANP maio/2026',
-    disclaimerEN: 'Data: PBEV 2026 (Inmetro, April 2026) · Prices: ANP May 2026',
+    
+    disclaimerPT: 'Dados: PBEV Inmetro · Preços médios públicos de combustíveis',
+    disclaimerEN: 'Data: PBEV Inmetro · Average public fuel prices',
   },
   EU: {
     flag: '🇪🇺',
