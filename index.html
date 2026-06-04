@@ -743,7 +743,15 @@ async function callGemini(msg) {
     const res = await fetch(`${BACKEND_URL}/api/comparar`, {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({mensagem: msg})
+      body: JSON.stringify({
+        mensagem: msg,
+        veiculos: [
+          { marca: document.getElementById('veiculoA_marca')?.value?.trim(), modelo: document.getElementById('veiculoA_modelo')?.value?.trim(), versao: document.getElementById('veiculoA_versao')?.value?.trim() },
+          { marca: document.getElementById('veiculoB_marca')?.value?.trim(), modelo: document.getElementById('veiculoB_modelo')?.value?.trim(), versao: document.getElementById('veiculoB_versao')?.value?.trim() },
+          ...(vehicleCVisible ? [{ marca: document.getElementById('veiculoC_marca')?.value?.trim(), modelo: document.getElementById('veiculoC_modelo')?.value?.trim(), versao: document.getElementById('veiculoC_versao')?.value?.trim() }] : [])
+        ].filter(v => v.marca && v.modelo),
+        regiao: currentRegion || 'BR'
+      })
     });
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
@@ -1074,3 +1082,4 @@ function acceptTerms() {
 </script>
 </body>
 </html>
+
