@@ -59,6 +59,17 @@ tailwind.config = {
 .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;user-select:none}
 .glass-panel{background:rgba(31,42,60,0.4);backdrop-filter:blur(12px);border:1px solid rgba(160,174,192,0.1)}
 .input-focus-glow:focus-within{box-shadow:0 0 0 2px rgba(74,225,118,0.2);border-color:#4ae176}
+/* Seletores em cascata: a lista suspensa do <select> é desenhada pelo sistema
+   operacional e não herda o tema. Sem isto, as opções abrem com fundo claro e
+   o texto #d8e3fb do tema, ficando ilegíveis. */
+select option{background-color:#111c2d;color:#d8e3fb}
+select option:checked{background-color:#263143;color:#ffffff}
+/* Placeholder e opções desabilitadas em tom secundário */
+select option[value=""]{color:#c6c6ca}
+/* Firefox/Windows: quando desabilitado, mantém contraste em vez de cinza plano */
+select:disabled{color:#c6c6ca;opacity:1}
+/* color-scheme dark faz o navegador desenhar a seta e o popup no tema escuro */
+select{color-scheme:dark}
 input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
 .segmented-btn.active{background-color:#4ae176;color:#002109}
 body{min-height:max(884px,100dvh)}
