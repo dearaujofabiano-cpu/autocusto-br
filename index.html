@@ -281,15 +281,21 @@ body{min-height:max(884px,100dvh)}
           <div class="grid grid-cols-3 gap-xs">
             <div class="input-focus-glow rounded-lg border border-outline bg-surface-container-lowest px-sm py-xs flex flex-col">
               <span class="text-[10px] text-outline uppercase tracking-wider mb-[2px]" id="l-marca-a">Marca</span>
-              <input id="veiculoA_marca" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/40 font-body-md outline-none text-sm" placeholder="Ex: Volkswagen" type="text"/>
+              <select id="veiculoA_marca" class="bg-transparent border-none focus:ring-0 w-full text-on-surface font-body-md outline-none text-sm">
+                <option value="">Selecione a marca</option>
+              </select>
             </div>
             <div class="input-focus-glow rounded-lg border border-outline bg-surface-container-lowest px-sm py-xs flex flex-col">
               <span class="text-[10px] text-outline uppercase tracking-wider mb-[2px]" id="l-modelo-a">Modelo</span>
-              <input id="veiculoA_modelo" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/40 font-body-md outline-none text-sm" placeholder="Ex: Polo" type="text"/>
+              <select id="veiculoA_modelo" class="bg-transparent border-none focus:ring-0 w-full text-on-surface font-body-md outline-none text-sm" disabled>
+                <option value="">Selecione a marca primeiro</option>
+              </select>
             </div>
             <div class="input-focus-glow rounded-lg border border-outline bg-surface-container-lowest px-sm py-xs flex flex-col">
               <span class="text-[10px] text-outline uppercase tracking-wider mb-[2px]" id="l-versao-a">Versão</span>
-              <input id="veiculoA_versao" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/40 font-body-md outline-none text-sm" placeholder="Ex: Confortline" type="text"/>
+              <select id="veiculoA_versao" class="bg-transparent border-none focus:ring-0 w-full text-on-surface font-body-md outline-none text-sm" disabled>
+                <option value="">Selecione o modelo primeiro</option>
+              </select>
             </div>
 
           </div>
@@ -300,15 +306,21 @@ body{min-height:max(884px,100dvh)}
           <div class="grid grid-cols-3 gap-xs">
             <div class="input-focus-glow rounded-lg border border-outline bg-surface-container-lowest px-sm py-xs flex flex-col">
               <span class="text-[10px] text-outline uppercase tracking-wider mb-[2px]" id="l-marca-b">Marca</span>
-              <input id="veiculoB_marca" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/40 font-body-md outline-none text-sm" placeholder="Ex: BYD" type="text"/>
+              <select id="veiculoB_marca" class="bg-transparent border-none focus:ring-0 w-full text-on-surface font-body-md outline-none text-sm">
+                <option value="">Selecione a marca</option>
+              </select>
             </div>
             <div class="input-focus-glow rounded-lg border border-outline bg-surface-container-lowest px-sm py-xs flex flex-col">
               <span class="text-[10px] text-outline uppercase tracking-wider mb-[2px]" id="l-modelo-b">Modelo</span>
-              <input id="veiculoB_modelo" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/40 font-body-md outline-none text-sm" placeholder="Ex: Dolphin" type="text"/>
+              <select id="veiculoB_modelo" class="bg-transparent border-none focus:ring-0 w-full text-on-surface font-body-md outline-none text-sm" disabled>
+                <option value="">Selecione a marca primeiro</option>
+              </select>
             </div>
             <div class="input-focus-glow rounded-lg border border-outline bg-surface-container-lowest px-sm py-xs flex flex-col">
               <span class="text-[10px] text-outline uppercase tracking-wider mb-[2px]" id="l-versao-b">Versão</span>
-              <input id="veiculoB_versao" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/40 font-body-md outline-none text-sm" placeholder="Ex: Mini" type="text"/>
+              <select id="veiculoB_versao" class="bg-transparent border-none focus:ring-0 w-full text-on-surface font-body-md outline-none text-sm" disabled>
+                <option value="">Selecione o modelo primeiro</option>
+              </select>
             </div>
 
           </div>
@@ -320,15 +332,21 @@ body{min-height:max(884px,100dvh)}
             <div class="grid grid-cols-3 gap-xs">
               <div class="input-focus-glow rounded-lg border border-outline bg-surface-container-lowest px-sm py-xs flex flex-col">
                 <span class="text-[10px] text-outline uppercase tracking-wider mb-[2px]" id="l-marca-c">Marca</span>
-                <input id="veiculoC_marca" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/40 font-body-md outline-none text-sm" placeholder="Ex: Toyota" type="text"/>
+                <select id="veiculoC_marca" class="bg-transparent border-none focus:ring-0 w-full text-on-surface font-body-md outline-none text-sm">
+                <option value="">Selecione a marca</option>
+              </select>
               </div>
               <div class="input-focus-glow rounded-lg border border-outline bg-surface-container-lowest px-sm py-xs flex flex-col">
                 <span class="text-[10px] text-outline uppercase tracking-wider mb-[2px]" id="l-modelo-c">Modelo</span>
-                <input id="veiculoC_modelo" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/40 font-body-md outline-none text-sm" placeholder="Ex: Corolla" type="text"/>
+                <select id="veiculoC_modelo" class="bg-transparent border-none focus:ring-0 w-full text-on-surface font-body-md outline-none text-sm" disabled>
+                <option value="">Selecione a marca primeiro</option>
+              </select>
               </div>
               <div class="input-focus-glow rounded-lg border border-outline bg-surface-container-lowest px-sm py-xs flex flex-col">
                 <span class="text-[10px] text-outline uppercase tracking-wider mb-[2px]" id="l-versao-c">Versão</span>
-                <input id="veiculoC_versao" class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/40 font-body-md outline-none text-sm" placeholder="Ex: Hybrid" type="text"/>
+                <select id="veiculoC_versao" class="bg-transparent border-none focus:ring-0 w-full text-on-surface font-body-md outline-none text-sm" disabled>
+                <option value="">Selecione o modelo primeiro</option>
+              </select>
               </div>
 
             </div>
@@ -424,15 +442,15 @@ body{min-height:max(884px,100dvh)}
           <span class="text-tertiary font-data-mono text-label-sm animate-pulse">●</span>
         </div>
         <ul class="space-y-xs">
-          <li onclick="fillExample('Chevrolet Onix Premier 2025','BYD Dolphin Mini 2026')" class="flex justify-between items-center py-xs border-b border-outline-variant/10 cursor-pointer hover:bg-surface-container-high rounded px-xs transition-colors">
+          <li onclick="fillExampleV2({marca:'CHEVROLET',modelo:'ONIX',versao:'PREMIER'},{marca:'BYD',modelo:'DOLPHIN MINI',versao:'GS EV'})" class="flex justify-between items-center py-xs border-b border-outline-variant/10 cursor-pointer hover:bg-surface-container-high rounded px-xs transition-colors">
             <span class="text-body-md text-primary text-sm">Onix Premier vs Dolphin Mini</span>
             <span class="material-symbols-outlined text-outline text-[16px]">arrow_forward</span>
           </li>
-          <li onclick="fillExample('Toyota Corolla Altis Hybrid 2025','BYD King GS 2025')" class="flex justify-between items-center py-xs border-b border-outline-variant/10 cursor-pointer hover:bg-surface-container-high rounded px-xs transition-colors">
+          <li onclick="fillExampleV2({marca:'TOYOTA',modelo:'COROLLA',versao:'ALTIS HV'},{marca:'BYD',modelo:'KING',versao:'GS DM'})" class="flex justify-between items-center py-xs border-b border-outline-variant/10 cursor-pointer hover:bg-surface-container-high rounded px-xs transition-colors">
             <span class="text-body-md text-primary text-sm">Corolla Hybrid vs BYD King GS</span>
             <span class="material-symbols-outlined text-outline text-[16px]">arrow_forward</span>
           </li>
-          <li onclick="fillExample('VW Polo Track 2025','GWM Ora 03 2025')" class="flex justify-between items-center py-xs cursor-pointer hover:bg-surface-container-high rounded px-xs transition-colors">
+          <li onclick="fillExampleV2({marca:'VW',modelo:'POLO',versao:'TRACK 1.0 MPI'},{marca:'GWM',modelo:'ORA 03',versao:'BEV58'})" class="flex justify-between items-center py-xs cursor-pointer hover:bg-surface-container-high rounded px-xs transition-colors">
             <span class="text-body-md text-primary text-sm">Polo Track vs GWM Ora 03</span>
             <span class="material-symbols-outlined text-outline text-[16px]">arrow_forward</span>
           </li>
@@ -628,24 +646,22 @@ function toggleVehicleC() {
     : '<span class="material-symbols-outlined text-[18px] group-hover:rotate-90 transition-transform">add</span> ADICIONAR TERCEIRO VEÍCULO';
 }
 
-function fillExample(a, b) {
-  // Preenche Veículo A a partir da string "Marca Modelo Versão Ano"
-  (function(str, prefix){
-    const p = str.split(' ');
-    const ano = p.length>=2 && /^\d{4}$/.test(p[p.length-1]) ? p.pop() : '';
-    document.getElementById(prefix+'_marca').value  = p[0]||'';
-    document.getElementById(prefix+'_modelo').value = p[1]||'';
-    document.getElementById(prefix+'_versao').value = p.slice(2).join(' ')||'';
-    document.getElementById(prefix+'_ano').value    = ano;
-  })(a, 'veiculoA');
-  (function(str, prefix){
-    const p = str.split(' ');
-    const ano = p.length>=2 && /^\d{4}$/.test(p[p.length-1]) ? p.pop() : '';
-    document.getElementById(prefix+'_marca').value  = p[0]||'';
-    document.getElementById(prefix+'_modelo').value = p[1]||'';
-    document.getElementById(prefix+'_versao').value = p.slice(2).join(' ')||'';
-    document.getElementById(prefix+'_ano').value    = ano;
-  })(b, 'veiculoB');
+// Preenche os selects a partir de valores EXATOS do dataset (pbev.json).
+// Substitui a versão antiga, que fazia split de string e escrevia num campo
+// `_ano` inexistente no DOM — o que lançava TypeError e deixava os botões de
+// exemplo quebrados. Com selects só é possível atribuir opções que existem,
+// então cada exemplo carrega {marca, modelo, versao} conferidos no dataset.
+async function fillExampleV2(veiculoA, veiculoB) {
+  await Promise.all([['veiculoA', veiculoA], ['veiculoB', veiculoB]].map(async ([prefix, v]) => {
+    const selMarca = document.getElementById(`${prefix}_marca`);
+    selMarca.value = v.marca;
+    // Aguarda a cascata popular cada nível antes de selecionar o seguinte,
+    // sem depender de setTimeout.
+    if (!await popularModelos(prefix)) return;
+    document.getElementById(`${prefix}_modelo`).value = v.modelo;
+    if (!await popularVersoes(prefix)) return;
+    document.getElementById(`${prefix}_versao`).value = v.versao;
+  }));
 }
 
 // KM sync
@@ -709,6 +725,23 @@ async function runComparativo() {
   const estado = '';
   if (!vA || !vB || !km) {
     alert(lang==='pt'?'Preencha ao menos Veículo A, Veículo B e Km por dia.':'Fill in Vehicle A, Vehicle B and Km per day.');
+    return;
+  }
+  // Com selects em cascata, marca preenchida e modelo vazio ainda produz uma
+  // string não-vazia em getVeiculo(); exige marca E modelo explicitamente.
+  const incompleto = p => {
+    const marca  = document.getElementById(p+'_marca')?.value || '';
+    const modelo = document.getElementById(p+'_modelo')?.value || '';
+    return !marca || !modelo;
+  };
+  const faltando = ['veiculoA','veiculoB']
+    .concat(vehicleCVisible && vC ? ['veiculoC'] : [])
+    .filter(incompleto);
+  if (faltando.length) {
+    const nomes = faltando.map(p => p.replace('veiculo','')).join(', ');
+    alert(lang==='pt'
+      ? `Selecione Marca e Modelo do(s) veículo(s): ${nomes}.`
+      : `Select Brand and Model for vehicle(s): ${nomes}.`);
     return;
   }
   const btn = document.getElementById('btnComparar');
@@ -921,6 +954,87 @@ const REGIONS = {
 };
 
 let currentRegion = 'BR';
+
+// ── TAXONOMIA DE VEÍCULOS (seletores em cascata) ────────────────────────────
+// PENDÊNCIA: a taxonomia cobre apenas a região BR (pbev.json). A região EU
+// (WLTP) continua com campos de texto livre — quando a cascata for estendida
+// para EU, o endpoint precisará aceitar a região como parâmetro.
+let TAXONOMIA_BR = null; // carregada uma vez, reaproveitada nos 3 veículos
+
+async function carregarTaxonomia() {
+  if (TAXONOMIA_BR) return TAXONOMIA_BR;
+  try {
+    const res = await fetch(`${BACKEND_URL}/api/veiculos/taxonomia`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    TAXONOMIA_BR = await res.json();
+  } catch (e) {
+    console.error('Falha ao carregar taxonomia de veículos:', e);
+    TAXONOMIA_BR = {}; // evita travar a página; selects de marca ficam vazios
+  }
+  return TAXONOMIA_BR;
+}
+
+function popularSelect(selectEl, opcoes, placeholder) {
+  selectEl.innerHTML = `<option value="">${placeholder}</option>` +
+    opcoes.map(o => `<option value="${o}">${o}</option>`).join('');
+}
+
+function resetarVersao(prefix) {
+  const selVersao = document.getElementById(`${prefix}_versao`);
+  popularSelect(selVersao, [], 'Selecione o modelo primeiro');
+  selVersao.disabled = true;
+}
+
+function resetarModelo(prefix) {
+  const selModelo = document.getElementById(`${prefix}_modelo`);
+  popularSelect(selModelo, [], 'Selecione a marca primeiro');
+  selModelo.disabled = true;
+  resetarVersao(prefix);
+}
+
+// Popula Modelo a partir da Marca já escolhida. Retorna true se habilitou.
+async function popularModelos(prefix) {
+  const taxonomia = await carregarTaxonomia();
+  const marca = document.getElementById(`${prefix}_marca`).value;
+  resetarVersao(prefix);
+  if (!marca || !taxonomia[marca]) { resetarModelo(prefix); return false; }
+  const selModelo = document.getElementById(`${prefix}_modelo`);
+  popularSelect(selModelo, Object.keys(taxonomia[marca]), 'Selecione o modelo');
+  selModelo.disabled = false;
+  return true;
+}
+
+// Popula Versão a partir de Marca+Modelo já escolhidos. Retorna true se habilitou.
+async function popularVersoes(prefix) {
+  const taxonomia = await carregarTaxonomia();
+  const marca  = document.getElementById(`${prefix}_marca`).value;
+  const modelo = document.getElementById(`${prefix}_modelo`).value;
+  if (!marca || !modelo || !taxonomia[marca]?.[modelo]) { resetarVersao(prefix); return false; }
+  const selVersao = document.getElementById(`${prefix}_versao`);
+  popularSelect(selVersao, taxonomia[marca][modelo], 'Selecione a versão');
+  selVersao.disabled = false;
+  return true;
+}
+
+async function popularMarcas(prefix) {
+  const taxonomia = await carregarTaxonomia();
+  popularSelect(document.getElementById(`${prefix}_marca`), Object.keys(taxonomia), 'Selecione a marca');
+}
+
+function configurarCascata(prefix) {
+  document.getElementById(`${prefix}_marca`)
+    .addEventListener('change', () => popularModelos(prefix));
+  document.getElementById(`${prefix}_modelo`)
+    .addEventListener('change', () => popularVersoes(prefix));
+}
+
+// Inicializar os 3 veículos ao carregar a página
+window.addEventListener('DOMContentLoaded', () => {
+  ['veiculoA', 'veiculoB', 'veiculoC'].forEach(prefix => {
+    popularMarcas(prefix);
+    configurarCascata(prefix);
+  });
+});
 
 function setRegion(region, btn) {
   currentRegion = region;
