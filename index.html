@@ -162,8 +162,8 @@ body{min-height:max(884px,100dvh)}
         <h3>2. Origem e Limitações dos Dados</h3>
         <p>Os dados utilizados nos cálculos são provenientes de fontes públicas oficiais, incluindo:</p>
         <ul>
-          <li>Tabela PBEV INMETRO e WLTP</li>
-          <li>Preços médios de combustíveis do Brasil e Europa</li>
+          <li>Tabela PBEV INMETRO</li>
+          <li>Preços médios de combustíveis do Brasil</li>
           <li>Informações declaradas pelos fabricantes</li>
           <li>Informações declaradas pela imprensa especializada brasileira</li>
         </ul>
@@ -220,19 +220,6 @@ body{min-height:max(884px,100dvh)}
     <h1 class="font-display-lg text-headline-md text-tertiary font-bold">AutoCusto</h1>
   </div>
   <div class="flex items-center gap-sm">
-    <!-- REGIÃO SELECTOR -->
-    <div class="flex bg-surface-container-lowest border border-outline-variant rounded-full p-[3px] gap-[2px]" id="regionSelector">
-      <button id="regionBR" onclick="setRegion('BR',this)"
-        class="flex items-center gap-[5px] px-[10px] py-[4px] rounded-full text-[11px] font-semibold transition-all bg-tertiary text-on-tertiary"
-        title="Dados PBEV INMETRO — Brasil">
-        🇧🇷 <span class="hidden sm:inline">Brasil</span>
-      </button>
-      <button id="regionEU" onclick="setRegion('EU',this)"
-        class="flex items-center gap-[5px] px-[10px] py-[4px] rounded-full text-[11px] font-semibold transition-all text-on-surface-variant hover:text-on-surface"
-        title="Dados WLTP — União Europeia">
-        🇪🇺 <span class="hidden sm:inline">União Europeia</span>
-      </button>
-    </div>
     <!-- SELETOR DE IDIOMA -->
     <div class="flex bg-surface-container-lowest border border-outline-variant rounded-full p-[3px] gap-[2px]">
       <button id="langPT" onclick="setLang('pt',this)"
@@ -265,7 +252,7 @@ body{min-height:max(884px,100dvh)}
 <div id="disclaimerBanner">
   <span class="material-symbols-outlined disc-icon">info</span>
   <div class="disc-text">
-    <span id="disc-main-text"><strong id="disc-title">Dados para planejamento.</strong> Os valores são calculados com base em fontes oficiais (PBEV INMETRO e WLTP) em condições padronizadas e podem divergir do uso real. Variações de tráfego, estilo de condução, temperatura e conservação do veículo afetam o consumo efetivo. Não utilize como única base para decisões de compra.</span>
+    <span id="disc-main-text"><strong id="disc-title">Dados para planejamento.</strong> Os valores são calculados com base em fontes oficiais (PBEV INMETRO) em condições padronizadas e podem divergir do uso real. Variações de tráfego, estilo de condução, temperatura e conservação do veículo afetam o consumo efetivo. Não utilize como única base para decisões de compra.</span>
     <button class="terms-link" onclick="document.getElementById('termsModal').style.display='flex'" style="display:inline;text-decoration:underline;background:none;border:none;padding:0;color:#45474a;cursor:pointer;font-size:11px" id="disc-terms-link"> Ver termos completos</button>
   </div>
   <button class="disc-close" onclick="document.getElementById('disclaimerBanner').style.display='none'" title="Fechar">✕</button>
@@ -416,7 +403,7 @@ body{min-height:max(884px,100dvh)}
           <span class="material-symbols-outlined text-tertiary" style="font-size:48px;opacity:.3">electric_car</span>
         </div>
         <p class="font-body-md text-on-surface-variant" id="techHighlightText">
-          A <strong class="text-primary">Tabela PBEV INMETRO</strong> reúne dados de consumo, autonomia e emissões de centenas de modelos vendidos no Brasil, incluindo elétricos, híbridos e flex. Para o mercado europeu usamos o ciclo <strong class="text-primary">WLTP</strong>. São as referências usadas pelo nosso simulador.
+          A <strong class="text-primary">Tabela PBEV INMETRO</strong> reúne dados de consumo, autonomia e emissões de centenas de modelos vendidos no Brasil, incluindo elétricos, híbridos e flex. É a referência usada pelo nosso simulador.
         </p>
       </div>
 
@@ -624,15 +611,15 @@ function setLang(l, btn) {
   const discMain = document.getElementById('disc-main-text');
   if (discMain) {
     discMain.innerHTML = l === 'pt'
-      ? '<strong id="disc-title">Dados para planejamento.</strong> Os valores são calculados com base em fontes oficiais (PBEV INMETRO e WLTP) em condições padronizadas e podem divergir do uso real. Variações de tráfego, estilo de condução, temperatura e conservação do veículo afetam o consumo efetivo. Não utilize como única base para decisões de compra.'
-      : '<strong id="disc-title">Planning data.</strong> Values are calculated based on official sources (PBEV INMETRO and WLTP) under standardised conditions and may differ from real usage. Traffic, driving style, temperature and vehicle condition affect actual consumption. Do not use as the sole basis for purchasing decisions.';
+      ? '<strong id="disc-title">Dados para planejamento.</strong> Os valores são calculados com base em fontes oficiais (PBEV INMETRO) em condições padronizadas e podem divergir do uso real. Variações de tráfego, estilo de condução, temperatura e conservação do veículo afetam o consumo efetivo. Não utilize como única base para decisões de compra.'
+      : '<strong id="disc-title">Planning data.</strong> Values are calculated based on official sources (PBEV INMETRO) under standardised conditions and may differ from real usage. Traffic, driving style, temperature and vehicle condition affect actual consumption. Do not use as the sole basis for purchasing decisions.';
   }
 
   // Traduzir o cicloLabel
   updateCiclo(document.getElementById('kmInput')?.value || 20);
 
-  // Re-aplicar textos de região com novo idioma
-  setRegion(currentRegion, document.getElementById('region' + currentRegion));
+  // Re-aplicar textos com o novo idioma
+  aplicarTextosRegiao();
 
   // Limpar resultado (idioma mudou, resultado anterior invalido)
   document.getElementById('resultArea').innerHTML = '';
@@ -695,7 +682,7 @@ updateCiclo(20);
 
 function brl(n) {
   if (n == null || isNaN(n)) return 'N/D';
-  const sym = currentRegion === 'EU' ? '€ ' : 'R$ ';
+  const sym = 'R$ ';
   return sym + Number(n).toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2});
 }
 function num(n, d=1) { return Number(n).toLocaleString('pt-BR', {minimumFractionDigits:d, maximumFractionDigits:d}); }
@@ -715,7 +702,7 @@ async function callGemini(msg) {
           { marca: document.getElementById('veiculoB_marca')?.value?.trim(), modelo: document.getElementById('veiculoB_modelo')?.value?.trim(), versao: document.getElementById('veiculoB_versao')?.value?.trim() },
           ...(vehicleCVisible ? [{ marca: document.getElementById('veiculoC_marca')?.value?.trim(), modelo: document.getElementById('veiculoC_modelo')?.value?.trim(), versao: document.getElementById('veiculoC_versao')?.value?.trim() }] : [])
         ].filter(v => v.marca && v.modelo),
-        regiao: currentRegion || 'BR'
+        regiao: 'BR'
       })
     });
     const data = await res.json();
@@ -766,20 +753,10 @@ async function runComparativo() {
     <span>${lang==='pt'?'Consultando dados e calculando custos...':'Fetching data and calculating costs...'}</span>
   </div>`;
 
-  // Modo região
-  const isEU = currentRegion === 'EU';
-  const regionLabel = isEU ? 'União Europeia / Europe (EU)' : (lang==='pt' ? 'Brasil' : 'Brazil');
+  const regionLabel = lang==='pt' ? 'Brasil' : 'Brazil';
   const estadoLabel = estado ? (lang==='pt' ? ' no estado ' : ' in state ') + estado : '';
-
-  // Preços de referência por região
-  const precos = isEU
-    ? 'PRICES EU: gas €1.72/L, diesel €1.58/L, elec €0.28/kWh'
-    : 'PRICES BR: gas R$6.65/L, eth R$4.44/L, elec R$0.75/kWh';
-
-  // Fonte de dados por região
-  const fonte = isEU
-    ? 'SOURCE: WLTP EU. Units: L/100km.'
-    : 'SOURCE: PBEV 2026 INMETRO. Units: km/L.';
+  const precos = 'PRICES BR: gas R$6.65/L, eth R$4.44/L, elec R$0.75/kWh';
+  const fonte = 'SOURCE: PBEV 2026 INMETRO. Units: km/L.';
 
   // Instrução de idioma EXPLÍCITA
   const langInstruction = lang === 'pt'
@@ -787,8 +764,8 @@ async function runComparativo() {
     : 'LANG:EN';
 
   const msg = lang === 'pt'
-    ? `${langInstruction}\nREGIÃO: ${regionLabel}\n${fonte}\n${precos}\n\nCompare os veículos abaixo com ${km} km por dia${estadoLabel}:\nVeículo A: ${vA}\nVeículo B: ${vB}${vC?'\nVeículo C: '+vC:''}\n${isEU ? 'REGIÃO EU: WLTP, sem etanol, gasolina/diesel, Euro(€), L/100km.' : 'Use obrigatoriamente a Tabela PBEV INMETRO como fonte primária.'}`
-    : `${langInstruction}\nREGION: ${regionLabel}\n${fonte}\n${precos}\n\nCompare the vehicles below with ${km} km per day${estadoLabel}:\nVehicle A: ${vA}\nVehicle B: ${vB}${vC?'\nVehicle C: '+vC:''}\n${isEU ? 'REGION EU: WLTP, no ethanol, gasoline/diesel only, Euro(€), L/100km.' : 'Mandatorily use the PBEV 2026 table (INMETRO) as the primary consumption source.'}`;
+    ? `${langInstruction}\nREGIÃO: ${regionLabel}\n${fonte}\n${precos}\n\nCompare os veículos abaixo com ${km} km por dia${estadoLabel}:\nVeículo A: ${vA}\nVeículo B: ${vB}${vC?'\nVeículo C: '+vC:''}\nUse obrigatoriamente a Tabela PBEV INMETRO como fonte primária.`
+    : `${langInstruction}\nREGION: ${regionLabel}\n${fonte}\n${precos}\n\nCompare the vehicles below with ${km} km per day${estadoLabel}:\nVehicle A: ${vA}\nVehicle B: ${vB}${vC?'\nVehicle C: '+vC:''}\nMandatorily use the PBEV 2026 table (INMETRO) as the primary consumption source.`;
 
   try {
     const data = await callGemini(msg);
@@ -864,7 +841,7 @@ function render(data) {
             ${isWin?`<span class="flex items-center gap-xs text-tertiary" style="font-size:11px;font-weight:700;letter-spacing:.04em"><span class="material-symbols-outlined" style="font-size:14px">check_circle</span>${lang==='pt'?'MAIS ECONÔMICO':'MOST EFFICIENT'}</span>`:''}
           </div>
           <p class="text-on-surface font-headline-md" style="font-size:15px;line-height:1.3;font-weight:600">${v.nome}${v.ano && !v.nome.includes(v.ano)?' '+v.ano:''}</p>
-          <p class="text-on-surface-variant" style="font-size:11px;margin-top:2px">${num(v.consumo_oficial.cidade,1)} ${v.consumo_oficial.unidade} ${lang==='pt'?'cidade':'city'} · ${currentRegion==='EU'?v.consumo_oficial.fonte.replace('PBEV INMETRO','WLTP (EU)').replace('não localizado no PBEV 2026','não localizado no WLTP').replace('PBEV','WLTP'):v.consumo_oficial.fonte}${v.autonomia_eletrica_km?' · '+v.autonomia_eletrica_km+' km elétrico':''}</p>
+          <p class="text-on-surface-variant" style="font-size:11px;margin-top:2px">${num(v.consumo_oficial.cidade,1)} ${v.consumo_oficial.unidade} ${lang==='pt'?'cidade':'city'} · ${v.consumo_oficial.fonte}${v.autonomia_eletrica_km?' · '+v.autonomia_eletrica_km+' km elétrico':''}</p>
         </div>
       </div>
       <!-- best scenario -->
@@ -926,50 +903,29 @@ function render(data) {
 }
 
 
-// ── REGIÃO BR / EU ────────────────────────────────────────────────────────
-const REGIONS = {
-  BR: {
-    flag: '🇧🇷',
-    labelPT: 'Brasil',
-    labelEN: 'Brazil',
-    dataSource: 'PBEV Inmetro',
-    priceSource: 'mai/26',
-    currency: 'R$',
-    price1LabelPT: 'Gasolina', price1LabelEN: 'Gasoline', price1Val: 'R$ 6,65/L',
-    price2LabelPT: 'Etanol',   price2LabelEN: 'Ethanol',  price2Val: 'R$ 4,44/L', price2Show: true,
-    price3LabelPT: 'Energia',  price3LabelEN: 'Energy',   price3Val: 'R$ 0,75/kWh',
-    price4LabelPT: 'Etanol compensa?', price4LabelEN: 'Ethanol worth it?', price4Val: '✓ Sim', price4Show: true,
-    techTextPT: 'A <strong class="text-primary">Tabela PBEV INMETRO</strong> reúne dados de consumo, autonomia e emissões de centenas de modelos vendidos no Brasil, incluindo elétricos, híbridos e flex. Para o mercado europeu usamos o ciclo <strong class="text-primary">WLTP</strong>. São as referências usadas pelo nosso simulador.',
-    techTextEN: 'The <strong class="text-primary">PBEV 2026 table (INMETRO)</strong> — updated April 2026 — covers consumption, range and emissions data for <strong class="text-primary">794 models</strong> sold in Brazil, including EVs, hybrids and flex. It is the reference used by our simulator.',
-    
-    disclaimerPT: 'Dados: PBEV INMETRO · Preços médios públicos de combustíveis',
-    disclaimerEN: 'Data: PBEV INMETRO · Average public fuel prices',
-  },
-  EU: {
-    flag: '🇪🇺',
-    labelPT: 'União Europeia',
-    labelEN: 'European Union',
-    dataSource: 'WLTP (EU Official)',
-    priceSource: 'EU avg mai/26',
-    currency: '€',
-    price1LabelPT: 'Gasolina',  price1LabelEN: 'Gasoline', price1Val: '€ 1,72/L',
-    price2LabelPT: 'Diesel',    price2LabelEN: 'Diesel',   price2Val: '€ 1,58/L', price2Show: true,
-    price3LabelPT: 'Energia',   price3LabelEN: 'Energy',   price3Val: '€ 0,28/kWh',
-    price4LabelPT: 'Unidade consumo', price4LabelEN: 'Consumption unit', price4Val: 'L/100km', price4Show: true,
-    techTextPT: 'Na <strong class="text-primary">União Europeia</strong>, o consumo oficial é medido pelo ciclo <strong class="text-primary">WLTP</strong> (Worldwide Harmonised Light Vehicle Test Procedure) — padrão mais próximo do uso real. Dados via DGEG Portugal e ACEA. Consumo em <strong class="text-primary">L/100km</strong>.',
-    techTextEN: 'In the <strong class="text-primary">European Union</strong>, official consumption is measured using the <strong class="text-primary">WLTP</strong> cycle (Worldwide Harmonised Light Vehicle Test Procedure) — closer to real-world usage. Data via DGEG Portugal and ACEA. Consumption in <strong class="text-primary">L/100km</strong>.',
-    stateLabelPT: 'País', stateLabelEN: 'Country',
-    disclaimerPT: 'Dados: WLTP (padrão EU oficial) · Preços médios EU maio/2026',
-    disclaimerEN: 'Data: WLTP (EU official standard) · Average EU prices May 2026',
-  }
+// ── TEXTOS E PREÇOS, BRASIL ────────────────────────────────────────────────
+// O app cobria também a União Europeia, com dados WLTP. A região foi retirada
+// em 23/09/2026: a fonte usada era a VCA, a agência do Reino Unido, e não da
+// UE, e não se achou uma base europeia com a estrutura de marca, modelo e
+// versão que os seletores em cascata exigem. Preferiu-se não ter a região a
+// tê-la com dado que não se sustenta. Ver a nota do projeto no vault.
+const REGIAO = {
+  dataSource: 'PBEV Inmetro',
+  priceSource: 'mai/26',
+  currency: 'R$',
+  price1LabelPT: 'Gasolina', price1LabelEN: 'Gasoline', price1Val: 'R$ 6,65/L',
+  price2LabelPT: 'Etanol',   price2LabelEN: 'Ethanol',  price2Val: 'R$ 4,44/L', price2Show: true,
+  price3LabelPT: 'Energia',  price3LabelEN: 'Energy',   price3Val: 'R$ 0,75/kWh',
+  price4LabelPT: 'Etanol compensa?', price4LabelEN: 'Ethanol worth it?', price4Val: '✓ Sim', price4Show: true,
+  techTextPT: 'A <strong class="text-primary">Tabela PBEV INMETRO</strong> reúne dados de consumo, autonomia e emissões de centenas de modelos vendidos no Brasil, incluindo elétricos, híbridos e flex. É a referência usada pelo nosso simulador.',
+  techTextEN: 'The <strong class="text-primary">PBEV table (INMETRO)</strong> covers consumption, range and emissions data for hundreds of models sold in Brazil, including EVs, hybrids and flex-fuel. It is the reference used by our simulator.',
+  disclaimerPT: 'Dados: PBEV INMETRO · Preços médios públicos de combustíveis',
+  disclaimerEN: 'Data: PBEV INMETRO · Average public fuel prices',
 };
 
-let currentRegion = 'BR';
-
 // ── TAXONOMIA DE VEÍCULOS (seletores em cascata) ────────────────────────────
-// PENDÊNCIA: a taxonomia cobre apenas a região BR (pbev.json). A região EU
-// (WLTP) continua com campos de texto livre — quando a cascata for estendida
-// para EU, o endpoint precisará aceitar a região como parâmetro.
+// A taxonomia vem de pbev.json, o único conjunto de dados do app desde que a
+// região União Europeia foi retirada, em 23/09/2026.
 let TAXONOMIA_BR = null; // carregada uma vez, reaproveitada nos 3 veículos
 
 async function carregarTaxonomia() {
@@ -1045,18 +1001,14 @@ window.addEventListener('DOMContentLoaded', () => {
     popularMarcas(prefix);
     configurarCascata(prefix);
   });
+  // Os textos e preços também estão no HTML estático, mas aplicar aqui deixa
+  // a constante REGIAO como fonte única, em vez de depender de os dois baterem.
+  aplicarTextosRegiao();
 });
 
-function setRegion(region, btn) {
-  currentRegion = region;
-  const r = REGIONS[region];
+function aplicarTextosRegiao() {
+  const r = REGIAO;
   const l = lang;
-
-  // Botões de região
-  document.getElementById('regionBR').className = 'flex items-center gap-[5px] px-[10px] py-[4px] rounded-full text-[11px] font-semibold transition-all ' +
-    (region === 'BR' ? 'bg-tertiary text-on-tertiary' : 'text-on-surface-variant hover:text-on-surface');
-  document.getElementById('regionEU').className = 'flex items-center gap-[5px] px-[10px] py-[4px] rounded-full text-[11px] font-semibold transition-all ' +
-    (region === 'EU' ? 'bg-tertiary text-on-tertiary' : 'text-on-surface-variant hover:text-on-surface');
 
   // Badge de fonte
   const dsLabel = document.getElementById('dataSourceLabel');
@@ -1080,34 +1032,16 @@ function setRegion(region, btn) {
   const tech = document.getElementById('techHighlightText');
   if (tech) tech.innerHTML = l==='pt' ? r.techTextPT : r.techTextEN;
 
-  // Label estado/país
-  const stateLabel = document.querySelector('label[for="estado"], label#l-estado');
-  // Atualizar select de estado para país (EU)
-  updateStateSelect(region);
+  updateStateSelect();
 
   // Limpar resultado anterior
   document.getElementById('resultArea').innerHTML = '';
 }
 
-function updateStateSelect(region) {
+function updateStateSelect() {
   const sel = document.getElementById('estado');
   if (!sel) return;
-  if (region === 'EU') {
-    sel.innerHTML = `
-      <option value="">Média EU</option>
-      <option value="Portugal">Portugal</option>
-      <option value="Espanha">Espanha</option>
-      <option value="França">França</option>
-      <option value="Alemanha">Alemanha</option>
-      <option value="Itália">Itália</option>
-      <option value="Holanda">Holanda</option>
-      <option value="Bélgica">Bélgica</option>
-      <option value="Suécia">Suécia</option>
-      <option value="Noruega">Noruega</option>
-      <option value="Reino Unido">Reino Unido</option>
-    `;
-  } else {
-    sel.innerHTML = `
+  sel.innerHTML = `
       <option value="">Média nacional</option>
       <option value="SP">São Paulo</option>
       <option value="RJ">Rio de Janeiro</option>
@@ -1122,7 +1056,6 @@ function updateStateSelect(region) {
       <option value="PE">Pernambuco</option>
       <option value="AM">Amazonas</option>
     `;
-  }
 }
 
 // Atualizar setLang para também atualizar textos de região
